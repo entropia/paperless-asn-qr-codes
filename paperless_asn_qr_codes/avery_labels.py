@@ -1,11 +1,11 @@
 import os
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import LETTER, landscape
+from reportlab.lib.pagesizes import LETTER, A4
 from reportlab.lib.units import inch
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.lib.units import mm, cm
+from reportlab.lib.units import mm
 
 # Usage:
 #   label = AveryLabels.AveryLabel(5160)
@@ -23,18 +23,19 @@ from reportlab.lib.units import mm, cm
 # label size w/h
 # label gutter across/down
 # page margins left/top
+# page size
 
 labelInfo = {
-    4731: ( 7, 27, (25.4*mm, 10*mm), (0.25*cm, 0), (1.22*cm, 0.48*cm)),
+    4731: ( 7, 27, (25.4*mm, 10*mm), (2.5*mm, 0), (9*mm, 13.5*mm), A4),
     # 2.6 x 1 address labels
-    5160: ( 3, 10, (187,  72), (11, 0), (14, 36)),
-    5161: ( 2, 10, (288,  72), (0, 0), (18, 36)),
+    5160: ( 3, 10, (187,  72), (11, 0), (14, 36), LETTER),
+    5161: ( 2, 10, (288,  72), (0, 0), (18, 36), LETTER),
     # 4 x 2 address labels
-    5163: ( 2,  5, (288, 144), (0, 0), (18, 36)),
+    5163: ( 2,  5, (288, 144), (0, 0), (18, 36), LETTER),
     # 1.75 x 0.5 return address labels
-    5167: ( 4, 20, (126,  36), (0, 0), (54, 36)),
+    5167: ( 4, 20, (126,  36), (0, 0), (54, 36), LETTER),
     # 3.5 x 2 business cards
-    5371: ( 2,  5, (252, 144), (0, 0), (54, 36)),
+    5371: ( 2,  5, (252, 144), (0, 0), (54, 36), LETTER),
 }
 
 RETURN_ADDRESS = 5167
@@ -51,7 +52,7 @@ class AveryLabel:
         self.margins = data[4]
         self.topDown = True
         self.debug = False
-        self.pagesize = LETTER
+        self.pagesize = data[5]
         self.position = 0
         self.__dict__.update(kwargs)
 
