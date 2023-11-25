@@ -1,4 +1,5 @@
 import os
+from dataclasses import dataclass, KW_ONLY
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import LETTER, A4
@@ -17,25 +18,28 @@ from reportlab.lib.units import mm
 # (with X,Y=0,0 at the lower right) or a string "form" name of a form
 # previously created with canv.beginForm().
 
+@dataclass
+class LabelInfo:
+    """Class for modeling label info"""
+    _: KW_ONLY
+    labels_horizontal: int
+    labels_vertical: int
+    label_size: tuple[float, float]
+    gutter_size: tuple[float, float]
+    margin: tuple[float, float]
+    pagesize: tuple[float, float]
 
-# labels across
-# labels down
-# label size w/h
-# label gutter across/down
-# page margins left/top
-# page size
-
-labelInfo = {
-    "averyL4731": ( 7, 27, (25.4*mm, 10*mm), (2.5*mm, 0), (9*mm, 13.5*mm), A4),
+labelInfo: dict[str, LabelInfo] = {
+    "averyL4731": LabelInfo(labels_horizontal= 7, labels_vertical= 27, label_size= (25.4*mm, 10*mm), gutter_size= (2.5*mm, 0), margin= (9*mm, 13.5*mm), pagesize= A4),
     # 2.6 x 1 address labels
-    "avery5160": ( 3, 10, (187,  72), (11, 0), (14, 36), LETTER),
-    "avery5161": ( 2, 10, (288,  72), (0, 0), (18, 36), LETTER),
+    "avery5160": LabelInfo(labels_horizontal=  3, labels_vertical= 10, label_size= (187,  72), gutter_size= (11, 0), margin= (14, 36), pagesize= LETTER),
+    "avery5161": LabelInfo(labels_horizontal=  2, labels_vertical= 10, label_size= (288,  72), gutter_size= (0, 0), margin= (18, 36), pagesize= LETTER),
     # 4 x 2 address labels
-    "avery5163": ( 2,  5, (288, 144), (0, 0), (18, 36), LETTER),
+    "avery5163": LabelInfo(labels_horizontal=  2, labels_vertical=  5, label_size= (288, 144), gutter_size= (0, 0), margin= (18, 36), pagesize= LETTER),
     # 1.75 x 0.5 return address labels
-    "avery5167": ( 4, 20, (126,  36), (0, 0), (54, 36), LETTER),
+    "avery5167": LabelInfo(labels_horizontal=  4, labels_vertical= 20, label_size= (126,  36), gutter_size= (0, 0), margin= (54, 36), pagesize= LETTER),
     # 3.5 x 2 business cards
-    "avery5371": ( 2,  5, (252, 144), (0, 0), (54, 36), LETTER),
+    "avery5371": LabelInfo(labels_horizontal=  2, labels_vertical=  5, label_size= (252, 144), gutter_size= (0, 0), margin= (54, 36), pagesize= LETTER),
 }
 
 RETURN_ADDRESS = 5167
@@ -45,14 +49,14 @@ class AveryLabel:
 
     def __init__(self, label, **kwargs):
         data = labelInfo[label]
-        self.across = data[0]
-        self.down = data[1]
-        self.size = data[2]
-        self.labelsep = self.size[0]+data[3][0], self.size[1]+data[3][1]
-        self.margins = data[4]
+        self.across = data.labels_horizontal
+        self.down = data.labels_vertical
+        self.size = data.label_size
+        self.labelsep = self.size[0]+data.gutter_size[0], self.size[1]+data.gutter_size[1]
+        self.margins = data.margin
         self.topDown = True
         self.debug = False
-        self.pagesize = data[5]
+        self.pagesize = data.pagesize
         self.position = 0
         self.__dict__.update(kwargs)
 

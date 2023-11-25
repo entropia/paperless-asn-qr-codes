@@ -27,6 +27,6 @@ def main():
     label = avery_labels.AveryLabel(args.format)
     label.open(args.output_file)
     # by default, we render all labels possible on a single sheet
-    count = avery_labels.labelInfo[args.format][0]*avery_labels.labelInfo[args.format][1]
+    count = avery_labels.labelInfo[args.format].labels_horizontal*avery_labels.labelInfo[args.format].labels_vertical
     label.render(render, count )
     label.close()
