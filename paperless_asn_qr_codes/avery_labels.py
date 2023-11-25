@@ -43,7 +43,7 @@ BUSINESS_CARDS = 5371
 
 class AveryLabel:
 
-    def __init__(self, label, **kwargs):
+    def __init__(self, label, debug, **kwargs):
         data = labelInfo[label]
         self.across = data[0]
         self.down = data[1]
@@ -51,7 +51,7 @@ class AveryLabel:
         self.labelsep = self.size[0]+data[3][0], self.size[1]+data[3][1]
         self.margins = data[4]
         self.topDown = True
-        self.debug = False
+        self.debug = debug
         self.pagesize = data[5]
         self.position = 0
         self.__dict__.update(kwargs)

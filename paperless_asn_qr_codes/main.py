@@ -20,10 +20,11 @@ def main():
                     description='CLI Tool for generating paperless ASN labels with QR codes')
     parser.add_argument('start_asn')
     parser.add_argument('output_file')
+    parser.add_argument('--border', action='store_true', help="Display borders around labels, useful for debugging the printer alignment")
     args = parser.parse_args()
     global startASN
     startASN = int(args.start_asn)
-    label = avery_labels.AveryLabel(4731)
+    label = avery_labels.AveryLabel(4731, args.border)
     label.open(args.output_file)
     label.render(render, 189 )
     label.close()

@@ -10,6 +10,11 @@ for machine consumption. The labels are Avery 4731 labels.
 pip install paperless-asn-qr-codes
 ```
 
+## Tips & Tricks
+
+In case your printer has alignment issues, you can generate a PDF with borders around the labels by using the
+`--border` option.
+
 ## License
 
 `paperless-asn-qr-codes` is distributed under the terms of the
