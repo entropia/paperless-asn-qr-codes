@@ -1,11 +1,7 @@
-import os
 from dataclasses import dataclass, KW_ONLY
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import LETTER, A4
-from reportlab.lib.units import inch
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.units import mm
 
 # Usage:
@@ -116,9 +112,9 @@ class AveryLabel:
         self.canvas.setLineCap(1)
 
     def topLeft(self, x=None, y=None):
-        if x == None:
+        if x is None:
             x = self.position
-        if y == None:
+        if y is None:
             if self.topDown:
                 x, y = divmod(x, self.down)
             else:
