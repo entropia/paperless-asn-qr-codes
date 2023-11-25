@@ -38,3 +38,13 @@ paperless-asn-qr-codes = "paperless_asn_qr_codes.main:main"
 
 [tool.hatch.version]
 source = "vcs"
+
+[tool.hatch.envs.ci]
+dependencies = [
+  "pylint",
+  "ruff",
+]
+
+[tool.hatch.envs.ci.scripts]
+check = "ruff check paperless_asn_qr_codes"
+lint = "pylint paperless_asn_qr_codes"

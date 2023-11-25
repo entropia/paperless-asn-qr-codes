@@ -1,0 +1,15 @@
+---
+name: Lint
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pipx install hatch
+      - run: hatch run ci:check
+        # temporary allow failures on pylint until we've fixed all issues
+      - run: hatch run ci:lint || exit 0
