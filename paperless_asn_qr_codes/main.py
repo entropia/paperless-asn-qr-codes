@@ -1,6 +1,6 @@
 import argparse
 
-from reportlab.lib.units import mm, cm
+from reportlab.lib.units import mm
 from reportlab_qrcode import QRCodeImage
 from paperless_asn_qr_codes import avery_labels
 
@@ -27,7 +27,9 @@ def main():
         "--format", choices=avery_labels.labelInfo.keys(), default="averyL4731"
     )
     parser.add_argument(
-        "--border", action='store_true', help="Display borders around labels, useful for debugging the printer alignment"
+        "--border",
+        action="store_true",
+        help="Display borders around labels, useful for debugging the printer alignment",
     )
     args = parser.parse_args()
     global startASN
