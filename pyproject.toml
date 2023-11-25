@@ -29,9 +29,9 @@ dependencies = [
 dynamic = ["version"]
 
 [project.urls]
-Documentation = "https://git.jcg.re/jcgruenhage/paperless-asn-qr-codes#readme"
-Issues = "https://git.jcg.re/jcgruenhage/paperless-asn-qr-codes/issues"
-Source = "https://git.jcg.re/jcgruenhage/paperless-asn-qr-codes"
+Documentation = "https://github.com/entropia/paperless-asn-qr-codes#readme"
+Issues = "https://github.com/entropia/paperless-asn-qr-codes/issues"
+Source = "https://github.com/entropia/paperless-asn-qr-codes"
 
 [project.scripts]
 paperless-asn-qr-codes = "paperless_asn_qr_codes.main:main"
