@@ -26,10 +26,13 @@ def main():
     parser.add_argument(
         "--format", choices=avery_labels.labelInfo.keys(), default="averyL4731"
     )
+    parser.add_argument(
+        "--border", action='store_true', help="Display borders around labels, useful for debugging the printer alignment"
+    )
     args = parser.parse_args()
     global startASN
     startASN = int(args.start_asn)
-    label = avery_labels.AveryLabel(args.format)
+    label = avery_labels.AveryLabel(args.format, args.border)
     label.open(args.output_file)
     # by default, we render all labels possible on a single sheet
     count = (
