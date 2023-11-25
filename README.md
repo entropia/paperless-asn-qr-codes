@@ -10,6 +10,14 @@ for machine consumption. The labels are Avery 4731 labels.
 pip install paperless-asn-qr-codes
 ```
 
+## Supported Sheets
+Some different sheet types are supported with the `--format` argument, however, not all are tested.
+
+Default is Avery L4731.
+
+Currently tested and known working are:
+- Avery L4731 (DIN A4 Labels)
+
 ## License
 
 `paperless-asn-qr-codes` is distributed under the terms of the

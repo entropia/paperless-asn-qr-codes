@@ -26,16 +26,16 @@ from reportlab.lib.units import mm
 # page size
 
 labelInfo = {
-    4731: ( 7, 27, (25.4*mm, 10*mm), (2.5*mm, 0), (9*mm, 13.5*mm), A4),
+    "averyL4731": ( 7, 27, (25.4*mm, 10*mm), (2.5*mm, 0), (9*mm, 13.5*mm), A4),
     # 2.6 x 1 address labels
-    5160: ( 3, 10, (187,  72), (11, 0), (14, 36), LETTER),
-    5161: ( 2, 10, (288,  72), (0, 0), (18, 36), LETTER),
+    "avery5160": ( 3, 10, (187,  72), (11, 0), (14, 36), LETTER),
+    "avery5161": ( 2, 10, (288,  72), (0, 0), (18, 36), LETTER),
     # 4 x 2 address labels
-    5163: ( 2,  5, (288, 144), (0, 0), (18, 36), LETTER),
+    "avery5163": ( 2,  5, (288, 144), (0, 0), (18, 36), LETTER),
     # 1.75 x 0.5 return address labels
-    5167: ( 4, 20, (126,  36), (0, 0), (54, 36), LETTER),
+    "avery5167": ( 4, 20, (126,  36), (0, 0), (54, 36), LETTER),
     # 3.5 x 2 business cards
-    5371: ( 2,  5, (252, 144), (0, 0), (54, 36), LETTER),
+    "avery5371": ( 2,  5, (252, 144), (0, 0), (54, 36), LETTER),
 }
 
 RETURN_ADDRESS = 5167
