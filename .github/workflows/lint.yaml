@@ -1,0 +1,20 @@
+---
+name: Lint
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pipx install hatch
+      - run: hatch -e ci run ruff check paperless_asn_qr_codes
+        # temporary allow failures on pylint until we've fixed all issues
+      - run: hatch -e ci run pylint paperless_asn_qr_codes || exit 0
+      - run: hatch -e ci run black paperless_asn_qr_codes --check --diff

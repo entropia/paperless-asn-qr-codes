@@ -28,6 +28,13 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+[project.optional-dependencies]
+dev = [
+  "pylint",
+  "ruff",
+  "black",
+]
+
 [project.urls]
 Documentation = "https://github.com/entropia/paperless-asn-qr-codes#readme"
 Issues = "https://github.com/entropia/paperless-asn-qr-codes/issues"
@@ -38,3 +45,8 @@ paperless-asn-qr-codes = "paperless_asn_qr_codes.main:main"
 
 [tool.hatch.version]
 source = "vcs"
+
+[tool.hatch.envs.ci]
+features = [
+  "dev"
+]
