@@ -81,6 +81,16 @@ labelInfo: dict[str, LabelInfo] = {
         margin=(54, 36),
         pagesize=LETTER,
     ),
+    # generic uncut A4 label paper
+    # (slightly larger for bad scanners & printers)
+    "genericA4large": LabelInfo(
+        labels_horizontal=5,
+        labels_vertical=14,
+        label_size=(40 * mm, 20 * mm),
+        gutter_size=(0 * mm, 0),
+        margin=(5 * mm, 4 * mm),
+        pagesize=A4,
+    )
 }
 
 RETURN_ADDRESS = 5167
