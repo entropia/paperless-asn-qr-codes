@@ -30,6 +30,7 @@ class LabelInfo:
     gutter_size: tuple[float, float]
     margin: tuple[float, float]
     pagesize: tuple[float, float]
+    textsize: float
 
 
 labelInfo: dict[str, LabelInfo] = {
@@ -40,6 +41,7 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(2.5 * mm, 0),
         margin=(9 * mm, 13.5 * mm),
         pagesize=A4,
+        textsize=2 * mm,
     ),
     "averyL4732": LabelInfo(
         labels_horizontal=5,
@@ -65,6 +67,7 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(11, 0),
         margin=(14, 36),
         pagesize=LETTER,
+        textsize=2 * mm,
     ),
     "avery5161": LabelInfo(
         labels_horizontal=2,
@@ -73,6 +76,7 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0, 0),
         margin=(18, 36),
         pagesize=LETTER,
+        textsize=2 * mm,
     ),
     # 4 x 2 address labels
     "avery5163": LabelInfo(
@@ -82,6 +86,7 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0, 0),
         margin=(18, 36),
         pagesize=LETTER,
+        textsize=2 * mm,
     ),
     # 1.75 x 0.5 return address labels
     "avery5167": LabelInfo(
@@ -91,6 +96,7 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0.3 * inch, 0),
         margin=(0.3 * inch, 0.5 * inch),
         pagesize=LETTER,
+        textsize=2 * mm,
     ),
     # 3.5 x 2 business cards
     "avery5371": LabelInfo(
@@ -100,6 +106,7 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0, 0),
         margin=(54, 36),
         pagesize=LETTER,
+        textsize=2 * mm,
     ),
     "averyL7162": LabelInfo(
         labels_horizontal=4,
@@ -160,6 +167,17 @@ labelInfo: dict[str, LabelInfo] = {
         margin=(8.48 * mm, 13.5 * mm),
         pagesize=A4,
     ),
+    # generic uncut A4 label paper
+    # (slightly larger for bad scanners & printers)
+    "genericA4large": LabelInfo(
+        labels_horizontal=5,
+        labels_vertical=14,
+        label_size=(40 * mm, 20 * mm),
+        gutter_size=(0 * mm, 0),
+        margin=(5 * mm, 4 * mm),
+        pagesize=A4,
+        textsize=3 * mm,
+    ),
 }
 
 RETURN_ADDRESS = 5167
@@ -174,6 +192,7 @@ class AveryLabel:
         self.across = data.labels_horizontal
         self.down = data.labels_vertical
         self.size = data.label_size
+        self.textsize = data.textsize
         self.labelsep = (
             self.size[0] + data.gutter_size[0],
             self.size[1] + data.gutter_size[1],
@@ -261,7 +280,7 @@ class AveryLabel:
                 canv.setLineWidth(0.25)
                 canv.rect(0, 0, self.size[0], self.size[1])
             if callable(thing):
-                thing(canv, self.size[0], self.size[1], *args)
+                thing(canv, self.size[0], self.size[1], self.textsize, *args)
             elif isinstance(thing, str):
                 canv.doForm(thing)
             canv.restoreState()
@@ -277,6 +296,6 @@ class AveryLabel:
             if self.debug:
                 canv.setLineWidth(0.25)
                 canv.rect(0, 0, self.size[0], self.size[1])
-            func(canv, self.size[0], self.size[1], chunk)
+            func(canv, self.size[0], self.size[1], self.textsize, chunk)
             canv.restoreState()
             self.advance()
