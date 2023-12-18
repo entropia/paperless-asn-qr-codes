@@ -5,14 +5,14 @@ from reportlab_qrcode import QRCodeImage
 from paperless_asn_qr_codes import avery_labels
 
 
-def render(c, x, y):
+def render(c, x, y, textsize):
     global startASN
     barcode_value = f"ASN{startASN:07d}"
     startASN = startASN + 1
 
     qr = QRCodeImage(barcode_value, size=y * 0.9)
     qr.drawOn(c, 1 * mm, y * 0.05)
-    c.setFont("Helvetica", 2 * mm)
+    c.setFont("Helvetica", textsize)
     c.drawString(y, (y - 2 * mm) / 2, barcode_value)
 
 
