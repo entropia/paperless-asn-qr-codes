@@ -24,6 +24,8 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371}, -f {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371}
+  --digits DIGITS, -d DIGITS
+                        Number of digits in the ASN (default: 7, produces 'ASN0000001')
   --border, -b          Display borders around labels, useful for debugging the printer alignment
 ```
 
@@ -39,6 +41,7 @@ options:
 
 - `-h`, `--help`: Shows the help message
 - `-f`, `--format`: Selects the format of the output sheet (see [Supported Sheets](#supported-sheets))
+- `-d`, `--digits`: Specifies the number of digits in the ASN (e.g. for the default number 7, the ASN will look like 'ASN0000001')
 - `-b`, `--border`: Generates the borders around the labels to help debug alignment issues (see [Tips & Tricks](#tips--tricks))
 
 ## Supported Sheets

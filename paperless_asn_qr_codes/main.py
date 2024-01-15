@@ -8,7 +8,8 @@ from paperless_asn_qr_codes import avery_labels
 
 def render(c, x, y):
     global startASN
-    barcode_value = f"ASN{startASN:07d}"
+    global digits
+    barcode_value = f"ASN{startASN:0{digits}d}"
     startASN = startASN + 1
 
     qr = QRCodeImage(barcode_value, size=y * 0.9)
@@ -28,6 +29,9 @@ def main():
         "--format", "-f", choices=avery_labels.labelInfo.keys(), default="averyL4731"
     )
     parser.add_argument(
+        "--digits", "-d", default=7, help="Number of digits in the ASN (default: 7, produces 'ASN0000001')", type=int
+    )
+    parser.add_argument(
         "--border",
         "-b",
         action="store_true",
@@ -35,7 +39,9 @@ def main():
     )
     args = parser.parse_args()
     global startASN
+    global digits
     startASN = int(args.start_asn)
+    digits = int(args.digits)
     label = avery_labels.AveryLabel(args.format, args.border)
     label.open(args.output_file)
     # by default, we render all labels possible on a single sheet
