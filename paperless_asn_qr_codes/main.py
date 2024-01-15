@@ -23,7 +23,7 @@ def main():
         description="CLI Tool for generating paperless ASN labels with QR codes",
     )
     parser.add_argument("start_asn", type=int, help="The value of the first ASN")
-    parser.add_argument("output_file", type=str, help="The output file to write to")
+    parser.add_argument("output_file", type=str, default="labels.pdf", help="The output file to write to (default: labels.pdf)")
     parser.add_argument(
         "--format", choices=avery_labels.labelInfo.keys(), default="averyL4731"
     )
