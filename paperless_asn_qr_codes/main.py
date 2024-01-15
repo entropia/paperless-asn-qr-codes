@@ -25,10 +25,11 @@ def main():
     parser.add_argument("start_asn", type=int, help="The value of the first ASN")
     parser.add_argument("output_file", type=str, default="labels.pdf", help="The output file to write to (default: labels.pdf)")
     parser.add_argument(
-        "--format", choices=avery_labels.labelInfo.keys(), default="averyL4731"
+        "--format", "-f", choices=avery_labels.labelInfo.keys(), default="averyL4731"
     )
     parser.add_argument(
         "--border",
+        "-b",
         action="store_true",
         help="Display borders around labels, useful for debugging the printer alignment",
     )
