@@ -2,6 +2,7 @@ import argparse
 
 from reportlab.lib.units import mm
 from reportlab_qrcode import QRCodeImage
+
 from paperless_asn_qr_codes import avery_labels
 
 
@@ -21,13 +22,14 @@ def main():
         prog="paperless-asn-qr-codes",
         description="CLI Tool for generating paperless ASN labels with QR codes",
     )
-    parser.add_argument("start_asn")
-    parser.add_argument("output_file")
+    parser.add_argument("start_asn", type=int, help="The value of the first ASN")
+    parser.add_argument("output_file", type=str, default="labels.pdf", help="The output file to write to (default: labels.pdf)")
     parser.add_argument(
-        "--format", choices=avery_labels.labelInfo.keys(), default="averyL4731"
+        "--format", "-f", choices=avery_labels.labelInfo.keys(), default="averyL4731"
     )
     parser.add_argument(
         "--border",
+        "-b",
         action="store_true",
         help="Display borders around labels, useful for debugging the printer alignment",
     )
