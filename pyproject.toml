@@ -11,6 +11,7 @@ license = "GPL-3.0"
 keywords = []
 authors = [
   { name = "Jan Christian Grünhage", email = "jan.christian@gruenhage.xyz" },
+  { name = "margau", email = "dev@marvingaube.de" },
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
