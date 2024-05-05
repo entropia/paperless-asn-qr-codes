@@ -13,7 +13,9 @@ pip install paperless-asn-qr-codes
 ## Usage
 
 ```
-usage: paperless-asn-qr-codes [-h] [--format {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371}] [--border] start_asn output_file
+usage: paperless-asn-qr-codes [-h] [--format {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371}] [--digits DIGITS] [--border] [--row-wise] [--num-labels NUM_LABELS] [--pages PAGES]
+                              [--start-position START_POSITION]
+                              start_asn output_file
 
 CLI Tool for generating paperless ASN labels with QR codes
 
@@ -27,6 +29,13 @@ options:
   --digits DIGITS, -d DIGITS
                         Number of digits in the ASN (default: 7, produces 'ASN0000001')
   --border, -b          Display borders around labels, useful for debugging the printer alignment
+  --row-wise, -r        Increment the ASNs row-wise, go from left to right
+  --num-labels NUM_LABELS, -n NUM_LABELS
+                        Number of labels to be printed on the sheet
+  --pages PAGES, -p PAGES
+                        Number of pages to be printed, ignored if NUM_LABELS is set (default: 1)
+  --start-position START_POSITION, -s START_POSITION
+                        Define the starting position on the sheet, eighter as ROW:COLUMN or COUNT, both starting from 1 (default: 1:1 or 1)
 ```
 
 ### Mandatory arguments
@@ -43,6 +52,10 @@ options:
 - `-f`, `--format`: Selects the format of the output sheet (see [Supported Sheets](#supported-sheets))
 - `-d`, `--digits`: Specifies the number of digits in the ASN (e.g. for the default number 7, the ASN will look like 'ASN0000001')
 - `-b`, `--border`: Generates the borders around the labels to help debug alignment issues (see [Tips & Tricks](#tips--tricks))
+- `-r`, `--row-wise`: Increments the labels from left to right instead of top to bottom
+- `-n`, `--num-labels`: Number of lables to be printed on the sheet
+- `-p`, `--pages`: Number of pages to be generated, ignored if -n is present.
+- `-s`, `--start-position`: Positon of first label to be printed, eighter defined as ROW:COLUMN or NUMBER. Starting from 1 eg. to use the whole sheet it would be 1:1 or 1. Useful if you have a partly used sheet from using `-n`.
 
 ## Supported Sheets
 Some different sheet types are supported with the `-f`/`--format` argument, however, not all are tested.
