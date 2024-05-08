@@ -23,7 +23,6 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "argparse",
   "reportlab",
   "reportlab_qrcode"
 ]
