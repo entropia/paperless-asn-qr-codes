@@ -65,6 +65,7 @@ The default is Avery L4731.
 
 Currently tested and known working are:
 - Avery L4731 (DIN A4 Labels)
+- HERMA 10003 (formerly HERMA 4345)
 
 ## Tips & Tricks
 
