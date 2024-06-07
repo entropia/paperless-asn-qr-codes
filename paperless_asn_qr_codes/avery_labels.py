@@ -99,6 +99,15 @@ labelInfo: dict[str, LabelInfo] = {
         margin=(8 * mm, 13 * mm),
         pagesize=A4,
     ),
+    # HERMA No. 10003 labels (former article No. 4345)
+    "herma10003": LabelInfo(
+        labels_horizontal=5,
+        labels_vertical=16,
+        label_size=(35.56 * mm, 16.93 * mm),
+        gutter_size=(2.54 * mm, 0),
+        margin=(11.02 * mm, 13.06 * mm),
+        pagesize=A4,
+    ),
 }
 
 RETURN_ADDRESS = 5167
