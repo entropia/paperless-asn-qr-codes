@@ -2,7 +2,8 @@ from dataclasses import dataclass, KW_ONLY
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import LETTER, A4
-from reportlab.lib.units import mm
+from reportlab.lib.units import mm, inch
+
 
 # Usage:
 #   label = AveryLabels.AveryLabel(5160)
@@ -72,9 +73,9 @@ labelInfo: dict[str, LabelInfo] = {
     "avery5167": LabelInfo(
         labels_horizontal=4,
         labels_vertical=20,
-        label_size=(126, 36),
-        gutter_size=(0, 0),
-        margin=(54, 36),
+        label_size=(1.75 * inch, 0.5 * inch),
+        gutter_size=(0.3 * inch, 0),
+        margin=(0.3 * inch, 0.5 * inch),
         pagesize=LETTER,
         textsize=2 * mm,
     ),
@@ -106,7 +107,9 @@ BUSINESS_CARDS = 5371
 
 
 class AveryLabel:
-    def __init__(self, label, debug, **kwargs):
+    def __init__(self, label, debug,
+                 topDown=True, start_pos=None,
+                 **kwargs):
         data = labelInfo[label]
         self.across = data.labels_horizontal
         self.down = data.labels_vertical
@@ -117,10 +120,27 @@ class AveryLabel:
             self.size[1] + data.gutter_size[1],
         )
         self.margins = data.margin
-        self.topDown = True
+        self.topDown = topDown
         self.debug = debug
         self.pagesize = data.pagesize
-        self.position = 0
+
+        #Calculate start offset
+        if isinstance(start_pos, tuple):
+            rows, columns = start_pos
+            # Minimum Value 1 for row/column
+            rows = max(rows, 1)
+            columns = max(columns, 1)
+            if self.topDown:
+                offset = (columns - 1) * self.down + rows - 1
+            else:
+                offset = (rows - 1) * self.across + columns - 1
+        elif start_pos:
+            offset = start_pos - 1
+        else:
+            offset = 0
+        # Limit start position to number of labels - 1
+        self.position = min(offset,  self.across * self.down - 1)
+
         self.__dict__.update(kwargs)
 
     def open(self, filename):
