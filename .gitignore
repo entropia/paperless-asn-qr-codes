@@ -1,3 +1,4 @@
+# test PDF files
 *.pdf
 /dist
 __pycache__
