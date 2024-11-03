@@ -67,6 +67,7 @@ Currently tested and known working are:
 - Avery L4731 (189 Labels on DIN A4)
 - Herma 4201 (64 Labels on DIN A4, [Disclaimer: Not perfect ;)](https://github.com/entropia/paperless-asn-qr-codes/pull/36))
 - Herma 10003 (80 Labels on DIN A4, formerly Herma 4345)
+- Herma 4346 (DIN A4 Labels)
 
 ## Tips & Tricks
 
