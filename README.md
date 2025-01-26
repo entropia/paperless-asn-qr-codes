@@ -10,6 +10,8 @@ for machine consumption. The labels are Avery 4731 labels.
 pip install paperless-asn-qr-codes
 ```
 
+In case you wanna use unrelease features, we also publish the main branch as development version to [PyPi](https://pypi.org/project/paperless-asn-qr-codes/#history).
+
 ## Usage
 
 ```
