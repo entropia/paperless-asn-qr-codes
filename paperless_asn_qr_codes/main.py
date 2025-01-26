@@ -144,7 +144,6 @@ def main():
     qr_scale_factor = args.qr_scale_factor
     qr_border_size = args.qr_border_size
     split_at = args.split_at
-    print(split_at)
 
     label = avery_labels.AveryLabel(
         args.format, args.border, topDown=args.row_wise, start_pos=args.start_position
