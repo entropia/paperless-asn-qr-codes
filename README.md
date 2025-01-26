@@ -13,7 +13,8 @@ pip install paperless-asn-qr-codes
 ## Usage
 
 ```
-usage: paperless-asn-qr-codes [-h] [--format {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371}] [--digits DIGITS] [--border] [--row-wise] [--num-labels NUM_LABELS] [--pages PAGES]
+usage: paperless-asn-qr-codes [-h] [--format {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371,herma10003}]
+                              [--digits DIGITS] [--border] [--row-wise] [--num-labels NUM_LABELS] [--pages PAGES]
                               [--start-position START_POSITION]
                               start_asn output_file
 
@@ -25,7 +26,7 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  --format {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371}, -f {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371}
+  --format {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371,herma10003}, -f {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371,herma10003}
   --digits DIGITS, -d DIGITS
                         Number of digits in the ASN (default: 7, produces 'ASN0000001')
   --border, -b          Display borders around labels, useful for debugging the printer alignment
@@ -65,6 +66,7 @@ The default is Avery L4731.
 Currently tested and known working are:
 - Avery L4731 (189 Labels on DIN A4)
 - Herma 4201 (64 Labels on DIN A4, [Disclaimer: Not perfect ;)](https://github.com/entropia/paperless-asn-qr-codes/pull/36))
+- Herma 10003 (80 Labels on DIN A4, formerly Herma 4345)
 
 ## Tips & Tricks
 
