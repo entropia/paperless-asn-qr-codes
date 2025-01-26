@@ -72,7 +72,7 @@ In case your printer has alignment issues, you can generate a PDF with borders a
 `-b`/`--border` option.
 
 ## Attribution
-This script is based upon a Public Domain Label Generation Class from [https://gist.github.com/timrprobocom/3946aca8ab75df8267bbf892a427a1b7](https://gist.github.com/timrprobocom/3946aca8ab75df8267bbf892a427a1b7)
+This script is based upon a public domain label generation class from @timrprobocom [https://gist.github.com/timrprobocom/3946aca8ab75df8267bbf892a427a1b7](https://gist.github.com/timrprobocom/3946aca8ab75df8267bbf892a427a1b7)
 
 ## License
 
