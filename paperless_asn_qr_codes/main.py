@@ -17,7 +17,7 @@ def render(c, x, y):
     splitting = split_at
     qr = QRCodeImage(f"{prefix}{barcode_value}", size=y *
                      qr_scale_factor, border=qr_border_size)
-    qr.drawOn(c, 1 * mm, y * 0.05)
+    qr.drawOn(c, 1 * mm, (y * (1-qr_scale_factor))/2)
     if omit_prefix:
         c.setFont("Helvetica", 3.5 * mm)
         c.drawString(y, (y - 2 * mm) / 2,

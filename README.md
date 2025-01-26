@@ -56,6 +56,13 @@ options:
 - `-n`, `--num-labels`: Number of lables to be printed on the sheet
 - `-p`, `--pages`: Number of pages to be generated, ignored if -n is present.
 - `-s`, `--start-position`: Positon of first label to be printed, eighter defined as ROW:COLUMN or NUMBER. Starting from 1 eg. to use the whole sheet it would be 1:1 or 1. Useful if you have a partly used sheet from using `-n`.
+- `--prefix`: Prefix in front of digits (default: ASN)
+- `--omit-prefix`: Do not print prefix in front of digits (just use it in the generated QR code)
+- `--x-offset`: Horizontal (X) offset in mm (default: 0)
+- `--y-offset`: Vertical (Y) offset in mm (default: 0)
+- `--qr-scale-factor`: Scale Factor of QR code (default: 0.9). Makes this option easier to play around until satisfied with the look.
+- `--qr-border-size`: Size of white border around QR code (default: 4) Makes this option easier to play around until satisfied with the look.
+- `--split-at`: visually split printed number at given digit position. Multiple times allowed to add multiple spaces. (default: no splitting)
 
 ## Supported Sheets
 Some different sheet types are supported with the `-f`/`--format` argument, however, not all are tested.
