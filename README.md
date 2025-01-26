@@ -63,12 +63,16 @@ Some different sheet types are supported with the `-f`/`--format` argument, howe
 The default is Avery L4731.
 
 Currently tested and known working are:
-- Avery L4731 (DIN A4 Labels)
+- Avery L4731 (189 Labels on DIN A4)
+- Herma 4201 (64 Labels on DIN A4, [Disclaimer: Not perfect ;)](https://github.com/entropia/paperless-asn-qr-codes/pull/36))
 
 ## Tips & Tricks
 
 In case your printer has alignment issues, you can generate a PDF with borders around the labels by using the
 `-b`/`--border` option.
+
+## Attribution
+This script is based upon a public domain label generation class from @timrprobocom [https://gist.github.com/timrprobocom/3946aca8ab75df8267bbf892a427a1b7](https://gist.github.com/timrprobocom/3946aca8ab75df8267bbf892a427a1b7)
 
 ## License
 
