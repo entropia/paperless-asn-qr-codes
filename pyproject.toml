@@ -23,8 +23,8 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "reportlab",
-  "reportlab_qrcode"
+  "reportlab==4.2.5",
+  "reportlab_qrcode==0.1.6"
 ]
 dynamic = ["version"]
 
@@ -44,8 +44,8 @@ local_scheme = "no-local-version"
 
 [tool.hatch.envs.ci]
 dependencies = [
-  "pylint",
-  "ruff",
+  "pylint==3.3.3",
+  "ruff==0.9.3",
 ]
 
 [tool.hatch.envs.ci.scripts]
