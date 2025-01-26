@@ -28,6 +28,9 @@ def main():
             return int(arg)
         else:
             raise argparse.ArgumentTypeError("invalid value")
+    # prepare a sorted list of all formats
+    availableFormats = list(avery_labels.labelInfo.keys())
+    availableFormats.sort()
 
     parser = argparse.ArgumentParser(
         prog="paperless-asn-qr-codes",
@@ -41,7 +44,7 @@ def main():
         help="The output file to write to (default: labels.pdf)",
     )
     parser.add_argument(
-        "--format", "-f", choices=avery_labels.labelInfo.keys(), default="averyL4731"
+        "--format", "-f", choices=availableFormats, default="averyL4731"
     )
     parser.add_argument(
         "--digits",

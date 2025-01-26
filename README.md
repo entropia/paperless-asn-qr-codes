@@ -28,16 +28,14 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  --format {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371,herma10003,herma4346}, -f {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371,herma10003,herma4346}
-  --digits DIGITS, -d DIGITS
-                        Number of digits in the ASN (default: 7, produces 'ASN0000001')
+  --format, -f {avery5160,avery5161,avery5163,avery5167,avery5371,averyL4731,averyL4732,herma10003,herma4201,herma4346}
+  --digits, -d DIGITS   Number of digits in the ASN (default: 7, produces 'ASN0000001')
   --border, -b          Display borders around labels, useful for debugging the printer alignment
   --row-wise, -r        Increment the ASNs row-wise, go from left to right
-  --num-labels NUM_LABELS, -n NUM_LABELS
+  --num-labels, -n NUM_LABELS
                         Number of labels to be printed on the sheet
-  --pages PAGES, -p PAGES
-                        Number of pages to be printed, ignored if NUM_LABELS is set (default: 1)
-  --start-position START_POSITION, -s START_POSITION
+  --pages, -p PAGES     Number of pages to be printed, ignored if NUM_LABELS is set (default: 1)
+  --start-position, -s START_POSITION
                         Define the starting position on the sheet, eighter as ROW:COLUMN or COUNT, both starting from 1 (default: 1:1 or 1)
 ```
 
@@ -66,9 +64,9 @@ Some different sheet types are supported with the `-f`/`--format` argument, howe
 The default is Avery L4731.
 
 Currently tested and known working are:
-- Avery L4731 (189 Labels on DIN A4)
-- Herma 4201 (64 Labels on DIN A4, [Disclaimer: Not perfect ;)](https://github.com/entropia/paperless-asn-qr-codes/pull/36))
+- **Avery L4731 (189 Labels on DIN A4, the default)**
 - Herma 10003 (80 Labels on DIN A4, formerly Herma 4345)
+- Herma 4201 (64 Labels on DIN A4, [Disclaimer: Not perfect ;)](https://github.com/entropia/paperless-asn-qr-codes/pull/36))
 - Herma 4346 (48 Labels on DIN A4)
 
 ## Tips & Tricks
