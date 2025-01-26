@@ -1,3 +1,4 @@
+"""This module is used to generate label PDFs for Avery labels and other label types."""
 from dataclasses import dataclass, KW_ONLY
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
