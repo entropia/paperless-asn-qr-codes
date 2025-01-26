@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name,too-many-instance-attributes
 """This module is used to generate label PDFs for Avery labels and other label types."""
 from dataclasses import dataclass, KW_ONLY
 from collections.abc import Iterator
@@ -124,6 +125,7 @@ BUSINESS_CARDS = 5371
 
 
 class AveryLabel:
+    """ class for creating the pdfs """
     def __init__(self, label, debug,
                  topDown=True, start_pos=None,
                  **kwargs):
@@ -139,6 +141,7 @@ class AveryLabel:
         self.topDown = topDown
         self.debug = debug
         self.pagesize = data.pagesize
+        self.canvas = None
 
         #Calculate start offset
         if isinstance(start_pos, tuple):
@@ -160,6 +163,7 @@ class AveryLabel:
         self.__dict__.update(kwargs)
 
     def open(self, filename):
+        """ handles canvas and reportlab page """
         self.canvas = canvas.Canvas(filename, pagesize=self.pagesize)
         if self.debug:
             self.canvas.setPageCompression(0)
@@ -167,6 +171,7 @@ class AveryLabel:
         self.canvas.setLineCap(1)
 
     def topLeft(self, x=None, y=None):
+        """ returns the top left corner of the label """
         if x is None:
             x = self.position
         if y is None:
@@ -181,12 +186,14 @@ class AveryLabel:
         )
 
     def advance(self):
+        """ advances the position to the next label """
         self.position += 1
         if self.position == self.across * self.down:
             self.canvas.showPage()
             self.position = 0
 
     def close(self):
+        """ closes the canvas and finishes the sheet """
         if self.position:
             self.canvas.showPage()
         self.canvas.save()
@@ -200,12 +207,13 @@ class AveryLabel:
     # per iteration of the iterator.
 
     def render(self, thing, count, *args):
+        """ renders all the labels on the sheet via callbacks """
         assert callable(thing) or isinstance(thing, str)
         if isinstance(count, Iterator):
             return self.render_iterator(thing, count)
 
         canv = self.canvas
-        for i in range(count):
+        for _ in range(count):
             canv.saveState()
             canv.translate(*self.topLeft())
             if self.debug:
@@ -217,8 +225,10 @@ class AveryLabel:
                 canv.doForm(thing)
             canv.restoreState()
             self.advance()
+        return None
 
     def render_iterator(self, func, iterator):
+        """ iterator interface """
         canv = self.canvas
         for chunk in iterator:
             canv.saveState()

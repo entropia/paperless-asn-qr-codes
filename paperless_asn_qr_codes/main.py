@@ -30,10 +30,10 @@ def main():
         if mat := re.match(r"^\d+$", arg):
             return int(arg)
         raise argparse.ArgumentTypeError("invalid value")
-    
+
     # prepare a sorted list of all formats
-    availableFormats = list(avery_labels.labelInfo.keys())
-    availableFormats.sort()
+    available_formats = list(avery_labels.labelInfo.keys())
+    available_formats.sort()
 
     parser = argparse.ArgumentParser(
         prog="paperless-asn-qr-codes",
@@ -47,7 +47,7 @@ def main():
         help="The output file to write to (default: labels.pdf)",
     )
     parser.add_argument(
-        "--format", "-f", choices=availableFormats, default="averyL4731"
+        "--format", "-f", choices=available_formats, default="averyL4731"
     )
     parser.add_argument(
         "--digits",
