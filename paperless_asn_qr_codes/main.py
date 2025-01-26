@@ -126,7 +126,7 @@ def main():
         "--qr-border-size", default=4, help="Size of white border around QR code (default: 4)", type=float
     )
     parser.add_argument(
-        "--split-at", default=[], help="visually split number at digit. multiple allowed (default: mo splitting)", type=int, action='append'
+        "--split-at", default=[], help="visually split number at digit. multiple allowed (default: no splitting)", type=int, action='append'
     )
 
     args = parser.parse_args()
