@@ -7,17 +7,23 @@ from reportlab_qrcode import QRCodeImage
 from paperless_asn_qr_codes import avery_labels
 
 
-def render(c, x, y):
+def render(c, x, y, line_break, size):
     global startASN
     global digits
-    barcode_value = f"ASN{startASN:0{digits}d}"
+    if line_break:
+        barcode_value = f"ASN\n{startASN:0{digits}d}"
+    else:
+        barcode_value = f"ASN {startASN:0{digits}d}"
     startASN = startASN + 1
 
     qr = QRCodeImage(barcode_value, size=y * 0.9)
     qr.drawOn(c, 1 * mm, y * 0.05)
-    c.setFont("Helvetica", 2 * mm)
-    c.drawString(y, (y - 2 * mm) / 2, barcode_value)
-
+    c.setFont("Helvetica", size * mm)
+    text_object = c.beginText()
+    text_object.setTextOrigin(y, (y - 2 * mm) / 2)
+    for line in barcode_value.split("\n"):
+        text_object.textLine(line)
+    c.drawText(text_object)
 
 def main():
     # Match the starting position parameter. Allow x:y or n
@@ -81,6 +87,19 @@ def main():
         type=_start_position,
         help="Define the starting position on the sheet, eighter as ROW:COLUMN or COUNT, both starting from 1 (default: 1:1 or 1)",
     )
+    parser.add_argument(
+        "--line-break",
+        "-l",
+        action="store_true",
+        help="Break line after ASN and display number in new line"
+    )
+    parser.add_argument(
+        "--size",
+        "-z",
+        type=float,
+        default=2,
+        help="Size of the number font in mm (default: 2)"
+    )
 
     args = parser.parse_args()
     global startASN
@@ -98,5 +117,16 @@ def main():
     else:
         # Otherwise number of pages*labels - offset
         count = args.pages * label.across * label.down - label.position
-    label.render(render, count)
+    label.render(render, count, args.line_break, args.size)
     label.close()
+    print(f"Labels written to {args.output_file}")
+    print(f"Start ASN: {startASN-count}")
+    print(f"Number of labels: {count}")
+    print(f"Number of pages: {args.pages}")
+    print(f"Label format: {args.format}")
+    print(f"Number of digits: {args.digits}")
+    print(f"Border: {args.border}")
+    print(f"Row-wise: {args.row_wise}")
+    print(f"Start position: {args.start_position}")
+    print(f"Line break: {args.line_break}")
+    print(f"Size: {args.size}")
