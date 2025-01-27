@@ -1,3 +1,5 @@
+# pylint: disable=global-statement,global-variable-undefined,global-variable-not-assigned,used-before-assignment
+""" Main module for the paperless ASN QR code generator, fills the labels with content """
 import argparse
 import re
 
@@ -6,8 +8,8 @@ from reportlab_qrcode import QRCodeImage
 
 from paperless_asn_qr_codes import avery_labels
 
-
-def render(c, x, y):
+def render(c, _, y):
+    """ Render the QR code and ASN number on the label """
     global startASN
     global digits
     barcode_value = f"ASN{startASN:0{digits}d}"
@@ -20,17 +22,18 @@ def render(c, x, y):
 
 
 def main():
+    """ Main function for the paperless ASN QR code generator """
     # Match the starting position parameter. Allow x:y or n
     def _start_position(arg):
         if mat := re.match(r"^(\d{1,2}):(\d{1,2})$", arg):
             return (int(mat.group(1)), int(mat.group(2)))
-        elif mat := re.match(r"^\d+$", arg):
+        if mat := re.match(r"^\d+$", arg):
             return int(arg)
-        else:
-            raise argparse.ArgumentTypeError("invalid value")
+        raise argparse.ArgumentTypeError("invalid value")
+
     # prepare a sorted list of all formats
-    availableFormats = list(avery_labels.labelInfo.keys())
-    availableFormats.sort()
+    available_formats = list(avery_labels.labelInfo.keys())
+    available_formats.sort()
 
     parser = argparse.ArgumentParser(
         prog="paperless-asn-qr-codes",
@@ -44,7 +47,7 @@ def main():
         help="The output file to write to (default: labels.pdf)",
     )
     parser.add_argument(
-        "--format", "-f", choices=availableFormats, default="averyL4731"
+        "--format", "-f", choices=available_formats, default="averyL4731"
     )
     parser.add_argument(
         "--digits",
@@ -82,7 +85,8 @@ def main():
         "--start-position",
         "-s",
         type=_start_position,
-        help="Define the starting position on the sheet, eighter as ROW:COLUMN or COUNT, both starting from 1 (default: 1:1 or 1)",
+        help="""Define the starting position on the sheet,
+                eighter as ROW:COLUMN or COUNT, both starting from 1 (default: 1:1 or 1)""",
     )
 
     args = parser.parse_args()

@@ -11,5 +11,4 @@ jobs:
       - uses: actions/checkout@v4
       - run: pipx install hatch
       - run: hatch run ci:check
-        # temporary allow failures on pylint until we've fixed all issues
-      - run: hatch run ci:lint || exit 0
+      - run: hatch run ci:lint
