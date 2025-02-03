@@ -45,7 +45,7 @@ local_scheme = "no-local-version"
 [tool.hatch.envs.ci]
 dependencies = [
   "pylint==3.3.4",
-  "ruff==0.9.3",
+  "ruff==0.9.4",
 ]
 
 [tool.hatch.envs.ci.scripts]
