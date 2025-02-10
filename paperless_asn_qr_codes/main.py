@@ -2,23 +2,7 @@
 import argparse
 import re
 
-from reportlab.lib.units import mm
-from reportlab_qrcode import QRCodeImage
-
-from paperless_asn_qr_codes import LabelSheet
-
-def render(c, _, y):
-    """ Render the QR code and ASN number on the label """
-    global startASN
-    global digits
-    barcode_value = f"ASN{startASN:0{digits}d}"
-    startASN = startASN + 1
-
-    qr = QRCodeImage(barcode_value, size=y * 0.9)
-    qr.drawOn(c, 1 * mm, y * 0.05)
-    c.setFont("Helvetica", 2 * mm)
-    c.drawString(y, (y - 2 * mm) / 2, barcode_value)
-
+from paperless_asn_qr_codes import label_sheet, label
 
 def main():
     """ Main function for the paperless ASN QR code generator """
@@ -31,7 +15,7 @@ def main():
         raise argparse.ArgumentTypeError("invalid value")
 
     # prepare a sorted list of all formats
-    available_formats = list(LabelSheet.labelSheetInfo.keys())
+    available_formats = list(label_sheet.labelSheetInfo.keys())
     available_formats.sort()
 
     parser = argparse.ArgumentParser(
@@ -89,20 +73,24 @@ def main():
     )
 
     args = parser.parse_args()
-    global startASN
-    global digits
-    startASN = int(args.start_asn)
+    start_asn = int(args.start_asn)
     digits = int(args.digits)
-    label = LabelSheet.LabelSheet(
+    # TODO: set digits to LabelInfo
+
+    # setup LabelSheet
+    sheet = label_sheet.LabelSheet(
         args.format, args.border, topDown=args.row_wise, start_pos=args.start_position
     )
-    label.open(args.output_file)
+    sheet.open(args.output_file)
+
+    # setup LabelRenderer with Label
+    l = label.Label(start_asn)
 
     # If defined use parameter for number of labels
     if args.num_labels:
         count = args.num_labels
     else:
         # Otherwise number of pages*labels - offset
-        count = args.pages * label.across * label.down - label.position
-    label.render(render, count)
-    label.close()
+        count = args.pages * sheet.across * sheet.down - sheet.position
+    sheet.render(l.render, count)
+    sheet.close()

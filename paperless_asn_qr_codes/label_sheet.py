@@ -1,4 +1,3 @@
-# pylint: disable=invalid-name,too-many-instance-attributes
 """This module is used to generate label PDFs for label sheets and other label types."""
 from dataclasses import dataclass, KW_ONLY
 from collections.abc import Iterator
