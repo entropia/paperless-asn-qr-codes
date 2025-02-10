@@ -1,4 +1,3 @@
-# pylint: disable=global-statement,global-variable-undefined,global-variable-not-assigned,used-before-assignment
 """ Main module for the paperless ASN QR code generator, fills the labels with content """
 import argparse
 import re
@@ -6,7 +5,7 @@ import re
 from reportlab.lib.units import mm
 from reportlab_qrcode import QRCodeImage
 
-from paperless_asn_qr_codes import avery_labels
+from paperless_asn_qr_codes import LabelSheet
 
 def render(c, _, y):
     """ Render the QR code and ASN number on the label """
@@ -32,7 +31,7 @@ def main():
         raise argparse.ArgumentTypeError("invalid value")
 
     # prepare a sorted list of all formats
-    available_formats = list(avery_labels.labelInfo.keys())
+    available_formats = list(LabelSheet.labelSheetInfo.keys())
     available_formats.sort()
 
     parser = argparse.ArgumentParser(
@@ -94,7 +93,7 @@ def main():
     global digits
     startASN = int(args.start_asn)
     digits = int(args.digits)
-    label = avery_labels.AveryLabel(
+    label = LabelSheet.LabelSheet(
         args.format, args.border, topDown=args.row_wise, start_pos=args.start_position
     )
     label.open(args.output_file)

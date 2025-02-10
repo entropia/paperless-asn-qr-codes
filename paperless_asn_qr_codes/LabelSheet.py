@@ -1,26 +1,14 @@
 # pylint: disable=invalid-name,too-many-instance-attributes
-"""This module is used to generate label PDFs for Avery labels and other label types."""
+"""This module is used to generate label PDFs for label sheets and other label types."""
 from dataclasses import dataclass, KW_ONLY
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import LETTER, A4
 from reportlab.lib.units import mm, inch
 
-
-# Usage:
-#   label = AveryLabels.AveryLabel(5160)
-#   label.open( "labels5160.pdf" )
-#   label.render( RenderAddress, 30 )
-#   label.close()
-#
-# 'render' can either pass a callable, which receives the canvas object
-# (with X,Y=0,0 at the lower right) or a string "form" name of a form
-# previously created with canv.beginForm().
-
-
 @dataclass
-class LabelInfo:
-    """Class for modeling label info"""
+class LabelSheetInfo:
+    """Class for modeling label sheet info"""
 
     _: KW_ONLY
     labels_horizontal: int
@@ -31,8 +19,8 @@ class LabelInfo:
     pagesize: tuple[float, float]
 
 
-labelInfo: dict[str, LabelInfo] = {
-    "averyL4731": LabelInfo(
+labelSheetInfo: dict[str, LabelSheetInfo] = {
+    "averyL4731": LabelSheetInfo(
         labels_horizontal=7,
         labels_vertical=27,
         label_size=(25.4 * mm, 10 * mm),
@@ -40,7 +28,7 @@ labelInfo: dict[str, LabelInfo] = {
         margin=(9 * mm, 13.5 * mm),
         pagesize=A4,
     ),
-    "averyL4732": LabelInfo(
+    "averyL4732": LabelSheetInfo(
         labels_horizontal=5,
         labels_vertical=16,
         label_size=(35.6 * mm, 16.9 * mm),
@@ -49,7 +37,7 @@ labelInfo: dict[str, LabelInfo] = {
         pagesize=A4,
     ),
     # 2.6 x 1 address labels
-    "avery5160": LabelInfo(
+    "avery5160": LabelSheetInfo(
         labels_horizontal=3,
         labels_vertical=10,
         label_size=(187, 72),
@@ -57,7 +45,7 @@ labelInfo: dict[str, LabelInfo] = {
         margin=(14, 36),
         pagesize=LETTER,
     ),
-    "avery5161": LabelInfo(
+    "avery5161": LabelSheetInfo(
         labels_horizontal=2,
         labels_vertical=10,
         label_size=(288, 72),
@@ -66,7 +54,7 @@ labelInfo: dict[str, LabelInfo] = {
         pagesize=LETTER,
     ),
     # 4 x 2 address labels
-    "avery5163": LabelInfo(
+    "avery5163": LabelSheetInfo(
         labels_horizontal=2,
         labels_vertical=5,
         label_size=(288, 144),
@@ -75,7 +63,7 @@ labelInfo: dict[str, LabelInfo] = {
         pagesize=LETTER,
     ),
     # 1.75 x 0.5 return address labels
-    "avery5167": LabelInfo(
+    "avery5167": LabelSheetInfo(
         labels_horizontal=4,
         labels_vertical=20,
         label_size=(1.75 * inch, 0.5 * inch),
@@ -84,7 +72,7 @@ labelInfo: dict[str, LabelInfo] = {
         pagesize=LETTER,
     ),
     # 3.5 x 2 business cards
-    "avery5371": LabelInfo(
+    "avery5371": LabelSheetInfo(
         labels_horizontal=2,
         labels_vertical=5,
         label_size=(252, 144),
@@ -93,7 +81,7 @@ labelInfo: dict[str, LabelInfo] = {
         pagesize=LETTER,
     ),
     # Herma 4201, 64 removable labels
-    "herma4201": LabelInfo(
+    "herma4201": LabelSheetInfo(
         labels_horizontal=4,
         labels_vertical=16,
         label_size=(45.7 * mm, 16.9 * mm),
@@ -102,7 +90,7 @@ labelInfo: dict[str, LabelInfo] = {
         pagesize=A4,
     ),
     # HERMA No. 10003 labels (former article No. 4345)
-    "herma10003": LabelInfo(
+    "herma10003": LabelSheetInfo(
         labels_horizontal=5,
         labels_vertical=16,
         label_size=(35.56 * mm, 16.93 * mm),
@@ -110,7 +98,7 @@ labelInfo: dict[str, LabelInfo] = {
         margin=(11.02 * mm, 13.06 * mm),
         pagesize=A4,
     ),
-    "herma4346": LabelInfo(
+    "herma4346": LabelSheetInfo(
         labels_horizontal=4,
         labels_vertical=12,
         label_size=(45.72*mm, 21.167*mm),
@@ -124,12 +112,12 @@ RETURN_ADDRESS = 5167
 BUSINESS_CARDS = 5371
 
 
-class AveryLabel:
+class LabelSheet:
     """ class for creating the pdfs """
     def __init__(self, label, debug,
                  topDown=True, start_pos=None,
                  **kwargs):
-        data = labelInfo[label]
+        data = labelSheetInfo[label]
         self.across = data.labels_horizontal
         self.down = data.labels_vertical
         self.size = data.label_size
