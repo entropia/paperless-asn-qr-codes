@@ -56,6 +56,7 @@ options:
 - `-n`, `--num-labels`: Number of lables to be printed on the sheet
 - `-p`, `--pages`: Number of pages to be generated, ignored if -n is present.
 - `-s`, `--start-position`: Positon of first label to be printed, eighter defined as ROW:COLUMN or NUMBER. Starting from 1 eg. to use the whole sheet it would be 1:1 or 1. Useful if you have a partly used sheet from using `-n`.
+- `-t`, `--prefixasn`: Set prefix instead of original ASN. (Default is ASN) (see [Tips & Tricks](#tips--tricks))
 
 ## Supported Sheets
 Some different sheet types are supported with the `-f`/`--format` argument, however, not all are tested.
@@ -69,6 +70,8 @@ Currently tested and known working are:
 
 In case your printer has alignment issues, you can generate a PDF with borders around the labels by using the
 `-b`/`--border` option.
+
+If you set your own ASN-Prefix (see [paperless-ngx docu)(https://docs.paperless-ngx.com/configuration/#PAPERLESS_CONSUMER_ASN_BARCODE_PREFIX)
 
 ## License
 

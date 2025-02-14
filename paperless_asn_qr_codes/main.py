@@ -11,7 +11,7 @@ def render(c, x, y):
     global startASN
     global digits
     global tagASN
-    barcode_value = f"{tagASN}{startASN:0{digits}d}"
+    barcode_value = f"{prefixASN}{startASN:0{digits}d}"
     startASN = startASN + 1
 
     qr = QRCodeImage(barcode_value, size=y * 0.9)
@@ -83,18 +83,18 @@ def main():
         help="Define the starting position on the sheet, eighter as ROW:COLUMN or COUNT, both starting from 1 (default: 1:1 or 1)",
     )
     parser.add_argument(
-        "--tagasn",
+        "--prefixasn",
         "-t",
         type=str,
         default="ASN",
-        help="Set the tag in froint of ASN Number default: ASN)",
+        help="Set the prefix-tag intead of ASN Number (default: ASN)",
     )
 
     args = parser.parse_args()
     global startASN
     global digits
-    global tagASN
-    tagASN = str(args.tagasn)
+    global prefixASN
+    prefixASN = str(args.prefixasn)
     startASN = int(args.start_asn)
     digits = int(args.digits)
     label = avery_labels.AveryLabel(
