@@ -117,6 +117,15 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(2.54*mm, 0),
         margin=(9.75*mm,21.5*mm),
         pagesize=A4,
+    ),
+    # AVERY 3657 (48.5mm x 25.4mm)
+    "avery3657": LabelInfo(
+        labels_horizontal=4,
+        labels_vertical=10,
+        label_size=(48.5*mm, 25.4*mm),
+        gutter_size=(0, 0),
+        margin=(8*mm,21.75*mm),
+        pagesize=A4,
     )
 }
 
