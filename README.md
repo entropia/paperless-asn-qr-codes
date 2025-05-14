@@ -76,6 +76,16 @@ Currently tested and known working are:
 In case your printer has alignment issues, you can generate a PDF with borders around the labels by using the
 `-b`/`--border` option.
 
+## Development
+
+This project uses [https://hatch.pypa.io/latest/](hatch) as a python project manager.
+
+If you wanna contribute, we recommend using hatch, e.g. by installing it with your system package manager or pipx (`pipx install hatch`).
+
+### Run paperless-asn-qr-codes in dev
+1. Enter a hatch shell from the project root (`hatch shell`)
+2. Run the command (`paperless-asn-qr-codes`) from inside the hatch shell
+
 ## Attribution
 This script is based upon a public domain label generation class from @timrprobocom [https://gist.github.com/timrprobocom/3946aca8ab75df8267bbf892a427a1b7](https://gist.github.com/timrprobocom/3946aca8ab75df8267bbf892a427a1b7)
 
