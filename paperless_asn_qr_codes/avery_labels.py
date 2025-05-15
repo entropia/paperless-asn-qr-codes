@@ -92,6 +92,14 @@ labelInfo: dict[str, LabelInfo] = {
         margin=(54, 36),
         pagesize=LETTER,
     ),
+    "averyL7162": LabelInfo(
+        labels_horizontal=4,
+        labels_vertical=16,
+        label_size=(49.5 * mm, 16.9 * mm),
+        gutter_size=(2.5 * mm, 0),
+        margin=(11 * mm, 13.5 * mm),
+        pagesize=A4,
+    ),
     # Herma 4201, 64 removable labels
     "herma4201": LabelInfo(
         labels_horizontal=4,
