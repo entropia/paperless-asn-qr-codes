@@ -12,13 +12,39 @@ def render(c, _, y):
     """ Render the QR code and ASN number on the label """
     global startASN
     global digits
-    barcode_value = f"ASN{startASN:0{digits}d}"
+    global prefix
+    global omit_prefix
+    barcode_value = f"{startASN:0{digits}d}"
     startASN = startASN + 1
+    splitting = split_at
+    qr = QRCodeImage(f"{prefix}{barcode_value}", size=y *
+                     qr_scale_factor, border=qr_border_size)
+    qr.drawOn(c, 1 * mm, (y * (1-qr_scale_factor))/2)
+    if omit_prefix:
+        c.setFont("Helvetica", 3.5 * mm)
+        c.drawString(y, (y - 2 * mm) / 2,
+                     format_number(barcode_value, splitting))
+    else:
+        c.setFont("Helvetica", 2 * mm)
+        c.drawString(y, (y - 2 * mm) / 2,
+                     f"{prefix}{format_number(barcode_value, splitting)}")
 
-    qr = QRCodeImage(barcode_value, size=y * 0.9)
-    qr.drawOn(c, 1 * mm, y * 0.05)
-    c.setFont("Helvetica", 2 * mm)
-    c.drawString(y, (y - 2 * mm) / 2, barcode_value)
+
+def format_number(s, positions):
+    # Create a list to store the parts of the string
+    parts = []
+    start = 0
+
+    # Loop through each position where you want to split the string
+    for pos in positions:
+        parts.append(s[start:pos])
+        start = pos
+
+    # Add the remaining part of the string after the last position
+    parts.append(s[start:])
+
+    # Join all parts together with a space in between each part
+    return ' '.join(parts)
 
 
 def main():
@@ -88,12 +114,44 @@ def main():
         help="""Define the starting position on the sheet,
                 eighter as ROW:COLUMN or COUNT, both starting from 1 (default: 1:1 or 1)""",
     )
+    parser.add_argument(
+        "--prefix", "-P", default="ASN", help="Prefix in front of digits (default: ASN)", type=str
+    )
+    parser.add_argument(
+        "--omit-prefix", action="store_true", help="Do not print prefix in front of digits"
+    )
+    parser.add_argument(
+        "--x-offset", "-x", default=0, help="Horizontal (X) offset in mm (default: 0)", type=float
+    )
+    parser.add_argument(
+        "--y-offset", "-y", default=0, help="Vertical (Y) offset in mm (default: 0)", type=float
+    )
+    parser.add_argument(
+        "--qr-scale-factor", default=0.9, help="Scale Factor of QR code (default: 0.9)", type=float
+    )
+    parser.add_argument(
+        "--qr-border-size", default=4, help="Size of white border around QR code (default: 4)", type=float
+    )
+    parser.add_argument(
+        "--split-at", default=[], help="visually split number at digit. multiple allowed (default: no splitting)", type=int, action='append'
+    )
 
     args = parser.parse_args()
     global startASN
     global digits
+    global prefix
+    global omit_prefix
+    global qr_scale_factor
+    global qr_border_size
+    global split_at
     startASN = int(args.start_asn)
     digits = int(args.digits)
+    prefix = args.prefix
+    omit_prefix = args.omit_prefix
+    qr_scale_factor = args.qr_scale_factor
+    qr_border_size = args.qr_border_size
+    split_at = args.split_at
+
     label = avery_labels.AveryLabel(
         args.format, args.border, topDown=args.row_wise, start_pos=args.start_position
     )
@@ -105,5 +163,7 @@ def main():
     else:
         # Otherwise number of pages*labels - offset
         count = args.pages * label.across * label.down - label.position
+    label.margins = (label.margins[0] + args.x_offset *
+                     mm, label.margins[1] + args.y_offset * mm)
     label.render(render, count)
     label.close()
