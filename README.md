@@ -70,6 +70,7 @@ Currently tested and known working are:
 - Herma 10003 (80 Labels on DIN A4, formerly Herma 4345)
 - Herma 4201 (64 Labels on DIN A4, [Disclaimer: Not perfect ;)](https://github.com/entropia/paperless-asn-qr-codes/pull/36))
 - Herma 4346 (48 Labels on DIN A4)
+- Herma 4333 (189 Labes on DIN A4)
 
 ## Tips & Tricks
 

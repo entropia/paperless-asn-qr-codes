@@ -126,7 +126,15 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0, 0),
         margin=(8*mm,21.75*mm),
         pagesize=A4,
-    )
+    ),
+    "herma4333": LabelInfo(
+        labels_horizontal=7,
+        labels_vertical=27,
+        label_size=(25.4 * mm, 10.0 * mm),
+        gutter_size=(2.54 * mm, 0),
+        margin=(8.48 * mm, 13.5 * mm),
+        pagesize=A4,
+    ),
 }
 
 RETURN_ADDRESS = 5167
