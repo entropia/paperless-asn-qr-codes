@@ -1,40 +1,22 @@
-[build-system]
-requires = ["hatchling", "hatch-vcs"]
-build-backend = "hatchling.build"
-
 [project]
 name = "paperless-asn-qr-codes"
-description = 'Code for generating paperless ASN labels with QR codes'
-readme = "README.md"
-requires-python = ">=3.7"
-license = "GPL-3.0"
-keywords = []
+description = "Code for generating paperless ASN labels with QR codes"
 authors = [
   { name = "Jan Christian Grünhage", email = "jan.christian@gruenhage.xyz" },
-  { name = "margau", email = "dev@marvingaube.de" },
+  { name = "Vanessa Gaube", email = "dev@vanessagaube.de"},
 ]
-classifiers = [
-  "Development Status :: 4 - Beta",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Programming Language :: Python :: Implementation :: PyPy",
-]
+license = "GPL-3.0"
+readme = "README.md"
+requires-python = ">=3.10"
+dynamic = ["version"]
 dependencies = [
   "reportlab==4.4.0",
   "reportlab_qrcode==0.1.6"
 ]
-dynamic = ["version"]
 
-[project.urls]
-Documentation = "https://github.com/entropia/paperless-asn-qr-codes#readme"
-Issues = "https://github.com/entropia/paperless-asn-qr-codes/issues"
-Source = "https://github.com/entropia/paperless-asn-qr-codes"
-
-[project.scripts]
-paperless-asn-qr-codes = "paperless_asn_qr_codes.main:main"
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
 [tool.hatch.version]
 source = "vcs"
@@ -42,12 +24,23 @@ source = "vcs"
 [tool.hatch.version.raw-options]
 local_scheme = "no-local-version"
 
-[tool.hatch.envs.ci]
-dependencies = [
-  "pylint==3.3.7",
-  "ruff==0.11.9",
-]
 
-[tool.hatch.envs.ci.scripts]
-check = "ruff check paperless_asn_qr_codes"
-lint = "pylint paperless_asn_qr_codes"
+[project.urls]
+Documentation = "https://codeberg.org/entropia/paperless-asn-qr-codes/src/branch/main#readme"
+Issues = "https://codeberg.org/entropia/paperless-asn-qr-codes/issues"
+Source = "https://codeberg.org/entropia/paperless-asn-qr-codes.git"
+
+# Scripts
+[project.scripts]
+paperless-asn-qr-code = "paperless_asn_qr_codes.main:main"
+
+
+# Dev Dependencies
+[tool.uv]
+dev-dependencies = [
+  "ruff",
+  "pylint",
+]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+# TODO: Dev/CI scripts for lint & co.

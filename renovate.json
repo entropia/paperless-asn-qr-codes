@@ -1,16 +1,39 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":semanticCommitTypeAll(update)"
+    "https://codeberg.org/margau/renovate-defaults/raw/branch/main/default.json"
   ],
-  "enabled": true,
   "packageRules": [
     {
-      "matchCategories": [
-        "python"
+      "matchFileNames": [
+        ".forgejo/workflows/commitlint.yaml",
+        ".forgejo/workflows/lint.yaml",
+        ".forgejo/workflows/publish.yaml",
+        ".forgejo/workflows/container.yaml"
+      ],
+      "enabled": false
+    },
+    {
+      "matchFileNames": [
+        ".forgejo/workflows/commitlint.yaml",
+        ".forgejo/workflows/lint.yaml",
+        ".forgejo/workflows/publish.yaml",
+        ".forgejo/workflows/container.yaml"
+      ],
+      "matchManagers": [
+        "copier"
       ],
       "enabled": true
+    },
+    {
+      "matchManagers": [
+        "docker-compose"
+      ],
+      "matchUpdateTypes": [
+        "pin",
+        "digest"
+      ],
+      "enabled": false
     }
   ]
 }
