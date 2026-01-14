@@ -5,10 +5,11 @@ on:
   pull_request:
 
 jobs:
-  forgejo:
+  build_publish:
+    name: "Build (and Publish)"
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:aea16b3e030fb4c31b60027fde6565c93d53718d816492521d083d5e63c0771c
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:726f20c249038e6ec2971b4f19a96057c9ea6c162a2120d7e0f0e3578db0ffa3
     
     steps:
       - uses: https://code.forgejo.org/actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
