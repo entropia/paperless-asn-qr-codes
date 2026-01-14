@@ -2,6 +2,9 @@ name: lint
 
 on:
   push:
+    branches:
+      - main
+  # non-main branches are handled by pull_request
   pull_request:
 
 jobs:
