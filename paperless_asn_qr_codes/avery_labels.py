@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name,too-many-instance-attributes
 """This module is used to generate label PDFs for Avery labels and other label types."""
+
 from dataclasses import dataclass, KW_ONLY
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
@@ -113,20 +114,20 @@ labelInfo: dict[str, LabelInfo] = {
     "herma4346": LabelInfo(
         labels_horizontal=4,
         labels_vertical=12,
-        label_size=(45.72*mm, 21.167*mm),
-        gutter_size=(2.54*mm, 0),
-        margin=(9.75*mm,21.5*mm),
+        label_size=(45.72 * mm, 21.167 * mm),
+        gutter_size=(2.54 * mm, 0),
+        margin=(9.75 * mm, 21.5 * mm),
         pagesize=A4,
     ),
     # AVERY 3657 (48.5mm x 25.4mm)
     "avery3657": LabelInfo(
         labels_horizontal=4,
         labels_vertical=10,
-        label_size=(48.5*mm, 25.4*mm),
+        label_size=(48.5 * mm, 25.4 * mm),
         gutter_size=(0, 0),
-        margin=(8*mm,21.75*mm),
+        margin=(8 * mm, 21.75 * mm),
         pagesize=A4,
-    )
+    ),
 }
 
 RETURN_ADDRESS = 5167
@@ -134,10 +135,9 @@ BUSINESS_CARDS = 5371
 
 
 class AveryLabel:
-    """ class for creating the pdfs """
-    def __init__(self, label, debug,
-                 topDown=True, start_pos=None,
-                 **kwargs):
+    """class for creating the pdfs"""
+
+    def __init__(self, label, debug, topDown=True, start_pos=None, **kwargs):
         data = labelInfo[label]
         self.across = data.labels_horizontal
         self.down = data.labels_vertical
@@ -152,7 +152,7 @@ class AveryLabel:
         self.pagesize = data.pagesize
         self.canvas = None
 
-        #Calculate start offset
+        # Calculate start offset
         if isinstance(start_pos, tuple):
             rows, columns = start_pos
             # Minimum Value 1 for row/column
@@ -167,12 +167,12 @@ class AveryLabel:
         else:
             offset = 0
         # Limit start position to number of labels - 1
-        self.position = min(offset,  self.across * self.down - 1)
+        self.position = min(offset, self.across * self.down - 1)
 
         self.__dict__.update(kwargs)
 
     def open(self, filename):
-        """ handles canvas and reportlab page """
+        """handles canvas and reportlab page"""
         self.canvas = canvas.Canvas(filename, pagesize=self.pagesize)
         if self.debug:
             self.canvas.setPageCompression(0)
@@ -180,7 +180,7 @@ class AveryLabel:
         self.canvas.setLineCap(1)
 
     def topLeft(self, x=None, y=None):
-        """ returns the top left corner of the label """
+        """returns the top left corner of the label"""
         if x is None:
             x = self.position
         if y is None:
@@ -195,14 +195,14 @@ class AveryLabel:
         )
 
     def advance(self):
-        """ advances the position to the next label """
+        """advances the position to the next label"""
         self.position += 1
         if self.position == self.across * self.down:
             self.canvas.showPage()
             self.position = 0
 
     def close(self):
-        """ closes the canvas and finishes the sheet """
+        """closes the canvas and finishes the sheet"""
         if self.position:
             self.canvas.showPage()
         self.canvas.save()
@@ -216,7 +216,7 @@ class AveryLabel:
     # per iteration of the iterator.
 
     def render(self, thing, count, *args):
-        """ renders all the labels on the sheet via callbacks """
+        """renders all the labels on the sheet via callbacks"""
         assert callable(thing) or isinstance(thing, str)
         if isinstance(count, Iterator):
             return self.render_iterator(thing, count)
@@ -237,7 +237,7 @@ class AveryLabel:
         return None
 
     def render_iterator(self, func, iterator):
-        """ iterator interface """
+        """iterator interface"""
         canv = self.canvas
         for chunk in iterator:
             canv.saveState()
