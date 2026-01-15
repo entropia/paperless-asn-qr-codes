@@ -20,8 +20,8 @@ jobs:
       - name: Install the project
         run: uv sync --locked --all-extras --dev
       - name: check with ruff
-        run: uv run ruff check paperless_asn_qr_codes || exit 0 
+        run: uv run ruff check paperless_asn_qr_codes 
       - name: format with ruff
-        run: uv run ruff format --check paperless_asn_qr_codes || exit 0 
+        run: uv run ruff format --check paperless_asn_qr_codes 
       - name: check with pylint
-        run: uv run pylint paperless_asn_qr_codes || exit 0 
+        run: uv run pylint paperless_asn_qr_codes 

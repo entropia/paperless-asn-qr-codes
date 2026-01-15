@@ -4,9 +4,9 @@ _src_path: https://codeberg.org/margau/copier-python-uv.git
 code_dir: paperless_asn_qr_codes
 container: false
 forgejo_url: https://codeberg.org/entropia/paperless-asn-qr-codes
-ignore_pylint: true
-ignore_ruff: true
-ignore_ruff_format: true
+ignore_pylint: false
+ignore_ruff: false
+ignore_ruff_format: false
 project_description: Code for generating paperless ASN labels with QR codes
 project_name: paperless-asn-qr-codes
 pypi_publish: true
