@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dynamic = ["version"]
 dependencies = [
-  "reportlab==4.4.0",
+  "reportlab==4.4.9",
   "reportlab_qrcode==0.1.6"
 ]
 
