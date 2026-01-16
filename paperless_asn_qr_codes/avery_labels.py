@@ -30,7 +30,7 @@ class LabelInfo:
     gutter_size: tuple[float, float]
     margin: tuple[float, float]
     pagesize: tuple[float, float]
-    textsize: float
+    textsize: float = 2 * mm
 
 
 labelInfo: dict[str, LabelInfo] = {
@@ -41,7 +41,6 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(2.5 * mm, 0),
         margin=(9 * mm, 13.5 * mm),
         pagesize=A4,
-        textsize=2 * mm,
     ),
     "averyL4732": LabelInfo(
         labels_horizontal=5,
@@ -67,7 +66,6 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(11, 0),
         margin=(14, 36),
         pagesize=LETTER,
-        textsize=2 * mm,
     ),
     "avery5161": LabelInfo(
         labels_horizontal=2,
@@ -76,7 +74,6 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0, 0),
         margin=(18, 36),
         pagesize=LETTER,
-        textsize=2 * mm,
     ),
     # 4 x 2 address labels
     "avery5163": LabelInfo(
@@ -86,7 +83,6 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0, 0),
         margin=(18, 36),
         pagesize=LETTER,
-        textsize=2 * mm,
     ),
     # 1.75 x 0.5 return address labels
     "avery5167": LabelInfo(
@@ -96,7 +92,6 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0.3 * inch, 0),
         margin=(0.3 * inch, 0.5 * inch),
         pagesize=LETTER,
-        textsize=2 * mm,
     ),
     # 3.5 x 2 business cards
     "avery5371": LabelInfo(
@@ -106,7 +101,6 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0, 0),
         margin=(54, 36),
         pagesize=LETTER,
-        textsize=2 * mm,
     ),
     "averyL7162": LabelInfo(
         labels_horizontal=4,
