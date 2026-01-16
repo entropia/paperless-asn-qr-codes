@@ -18,7 +18,11 @@ Run with uvx:
 ```console
 uvx paperless-asn-qr-codes
 ```
-Run with uvx for pre-releases:
+Run with uvx with a specific version, e.g. for pre-releases:
+```console
+uvx --from paperless-asn-qr-codes==<version>
+```
+E.g. for dev15:
 ```console
 uvx --from paperless-asn-qr-codes==0.4.1dev15
 ```
