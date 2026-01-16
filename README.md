@@ -67,6 +67,7 @@ Currently tested and known working are:
 - **Avery L4731 (189 Labels on DIN A4, the default)**
 - Avery L4732 (80 Labels on DIN A4)
 - Avery 3657 (40 Labels on DIN A4)
+- Avery L7162 (manual cutting needed, 4 ASNs per Label)
 - Herma 10003 (80 Labels on DIN A4, formerly Herma 4345)
 - Herma 4201 (64 Labels on DIN A4, [Disclaimer: Not perfect ;)](https://github.com/entropia/paperless-asn-qr-codes/pull/36))
 - Herma 4346 (48 Labels on DIN A4)
