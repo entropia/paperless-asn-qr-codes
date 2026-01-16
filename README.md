@@ -1,8 +1,8 @@
 # paperless-asn-qr-codes
 
 `paperless-asn-qr-codes` is a command line utility for generating ASN labels
-for paperless with both a human-readable representation, as well as a QR code
-for machine consumption. The labels are Avery 4731 labels.
+for paperless with both a human-readable representation and a QR code
+for machine consumption. The labels are Avery 4731 labels by default.
 
 ## Installation
 
@@ -14,6 +14,15 @@ In case you wanna use unrelease features, we also publish the main branch as dev
 
 ## Usage
 
+Run with uvx: 
+```console
+uvx paperless-asn-qr-codes
+```
+Run with uvx for pre-releases:
+```console
+uvx --from paperless-asn-qr-codes==0.4.1dev15
+```
+Command Line Arguments:
 ```
 usage: paperless-asn-qr-codes [-h] [--format {averyL4731,avery5160,avery5161,avery5163,avery5167,avery5371,herma10003}]
                               [--digits DIGITS] [--border] [--row-wise] [--num-labels NUM_LABELS] [--pages PAGES]
@@ -54,9 +63,9 @@ options:
 - `-d`, `--digits`: Specifies the number of digits in the ASN (e.g. for the default number 7, the ASN will look like 'ASN0000001')
 - `-b`, `--border`: Generates the borders around the labels to help debug alignment issues (see [Tips & Tricks](#tips--tricks))
 - `-r`, `--row-wise`: Increments the labels from left to right instead of top to bottom
-- `-n`, `--num-labels`: Number of lables to be printed on the sheet
+- `-n`, `--num-labels`: Number of labels to be printed on the sheet
 - `-p`, `--pages`: Number of pages to be generated, ignored if -n is present.
-- `-s`, `--start-position`: Positon of first label to be printed, eighter defined as ROW:COLUMN or NUMBER. Starting from 1 eg. to use the whole sheet it would be 1:1 or 1. Useful if you have a partly used sheet from using `-n`.
+- `-s`, `--start-position`: Positon of first label to be printed, either defined as ROW:COLUMN or NUMBER. Starting from 1 eg. to use the whole sheet it would be 1:1 or 1. Useful if you have a partly used sheet from using `-n`.
 
 ## Supported Sheets
 Some different sheet types are supported with the `-f`/`--format` argument, however, not all are tested.
