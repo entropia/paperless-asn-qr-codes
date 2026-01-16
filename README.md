@@ -86,6 +86,9 @@ Currently tested and known working are:
 - Herma 4346 (48 Labels on DIN A4)
 - Herma 4333 (189 Labes on DIN A4)
 
+If you don't have label sheets at hand, you can also use:
+- `genericA4large` (70 Labels on plain DIN A4, manual cutting needed)
+
 ## Tips & Tricks
 
 In case your printer has alignment issues, you can generate a PDF with borders around the labels by using the
