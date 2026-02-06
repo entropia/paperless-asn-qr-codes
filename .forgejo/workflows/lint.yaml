@@ -11,7 +11,7 @@ jobs:
   lint-check:
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:2ed33222bc6b7b2484d0a7dc34bf4fad2f30540830fb84611682db0fa27eb708
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:589be07d9017971184484e9d5f6d4aa83d096033f29b85b8ad28d9eef54b37cf
 
     steps:
       - uses: https://code.forgejo.org/actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
