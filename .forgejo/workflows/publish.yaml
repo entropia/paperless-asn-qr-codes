@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
   # non-main branches are handled by pull_request
   pull_request:
 
