@@ -11,7 +11,7 @@ jobs:
   test-blackbox:
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:589be07d9017971184484e9d5f6d4aa83d096033f29b85b8ad28d9eef54b37cf
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:c1f2b22c1d7d3ff21293db1f879f9c17d275fd6fbc2cc3b8388301964fbecf62
 
     steps:
       - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
