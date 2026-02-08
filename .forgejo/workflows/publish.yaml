@@ -49,10 +49,10 @@ jobs:
     name: "Draft Release Notes"
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:eaa6f1c4510e6d5c0c81164a127e281be029d2ed261e060880145c024e890ce4
     
     steps:
-      - uses: https://code.forgejo.org/actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0
       - name: draft release notes
