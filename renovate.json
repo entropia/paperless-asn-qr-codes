@@ -9,7 +9,8 @@
         ".forgejo/workflows/commitlint.yaml",
         ".forgejo/workflows/lint.yaml",
         ".forgejo/workflows/publish.yaml",
-        ".forgejo/workflows/container.yaml"
+        ".forgejo/workflows/container.yaml",
+        "Containerfile"
       ],
       "enabled": false
     },
@@ -18,7 +19,8 @@
         ".forgejo/workflows/commitlint.yaml",
         ".forgejo/workflows/lint.yaml",
         ".forgejo/workflows/publish.yaml",
-        ".forgejo/workflows/container.yaml"
+        ".forgejo/workflows/container.yaml",
+        "Containerfile"
       ],
       "matchManagers": [
         "copier"
