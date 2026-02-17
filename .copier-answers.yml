@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier.
-_commit: 0.0.198
+_commit: 0.0.202
 _src_path: https://codeberg.org/margau/copier-python-uv.git
 code_dir: paperless_asn_qr_codes
 container: false
