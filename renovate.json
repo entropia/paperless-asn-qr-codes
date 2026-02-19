@@ -36,6 +36,21 @@
         "digest"
       ],
       "enabled": false
+    },
+    {
+      "matchManagers": [
+        "copier"
+      ],
+      "separateMinorPatch": true
+    },
+    {
+      "matchManagers": [
+        "copier"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "automerge": true
     }
   ]
 }
