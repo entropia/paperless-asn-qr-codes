@@ -93,6 +93,16 @@ labelInfo: dict[str, LabelInfo] = {
         margin=(0.3 * inch, 0.5 * inch),
         pagesize=LETTER,
     ),
+    # 1.75 x 0.66 return address labels
+    "avery5195": LabelInfo(
+        labels_horizontal=4,
+        labels_vertical=15,
+        label_size=(128, 47),
+        gutter_size=(20, 0),
+        margin=(19, 38.5),
+        pagesize=LETTER,
+        textsize=3 * mm,
+    ),
     # 3.5 x 2 business cards
     "avery5371": LabelInfo(
         labels_horizontal=2,
