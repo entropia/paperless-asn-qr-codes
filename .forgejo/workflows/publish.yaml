@@ -14,7 +14,7 @@ jobs:
     name: "Build (and Publish)"
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:ba79a4aee42607ae983dcab497448decf132e30dd185b005ab8369e7feeac77c
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:ddef6cf31e2d7a0051ea7138a7cdeddc57b72befe39a053132db1fa34106f5c7
     
     steps:
       - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -39,7 +39,7 @@ jobs:
         env:
           GITEA_REPO: "${{ forgejo.repository }}"
       - name: Upload release assets to Forgejo
-        uses: https://code.forgejo.org/actions/forgejo-release@9ef8d3a17f0c09ca6864a337f748e9c038d1c820 # v2.11.1
+        uses: https://code.forgejo.org/actions/forgejo-release@6a9510a9ea01b8b9b435933bf3c0fa45597ad530 # v2.11.3
         if: "${{ startsWith(github.ref, 'refs/tags') }}"
         with:
           direction: upload
@@ -49,7 +49,7 @@ jobs:
     name: "Draft Release Notes"
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:ba79a4aee42607ae983dcab497448decf132e30dd185b005ab8369e7feeac77c
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:ddef6cf31e2d7a0051ea7138a7cdeddc57b72befe39a053132db1fa34106f5c7
     
     steps:
       - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6

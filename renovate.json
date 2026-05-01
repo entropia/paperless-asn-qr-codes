@@ -50,6 +50,12 @@
       "matchUpdateTypes": [
         "patch"
       ],
+      "automerge": true,
+      "groupName": "housekeeping"
+    },
+    {
+      "matchPackageNames": ["codeberg.org/margau/buildenv*"],
+      "groupName": "housekeeping",
       "automerge": true
     }
   ]
