@@ -50,13 +50,17 @@
       "matchUpdateTypes": [
         "patch"
       ],
+      "groupName": "housekeeping",
+      "branchTopic": "housekeeping",
       "automerge": true,
-      "groupName": "housekeeping"
+      "automergeSchedule": "* 0-3 */2 * *"
     },
     {
       "matchPackageNames": ["codeberg.org/margau/buildenv*"],
       "groupName": "housekeeping",
-      "automerge": true
+      "branchTopic": "housekeeping",
+      "automerge": true,
+      "automergeSchedule": "* 0-3 */2 * *"
     }
   ]
 }
