@@ -14,7 +14,7 @@ jobs:
     name: "Build (and Publish)"
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:c1179e653477a64ab256b3db5703df323da131377994e5f93ccaba9c3e606551
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:aaaf8bd9bfbe276136de485eb397aad9dc569b0ae76473b12f16b0205fcf4be0
     
     steps:
       - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -49,7 +49,7 @@ jobs:
     name: "Draft Release Notes"
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:c1179e653477a64ab256b3db5703df323da131377994e5f93ccaba9c3e606551
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:aaaf8bd9bfbe276136de485eb397aad9dc569b0ae76473b12f16b0205fcf4be0
     
     steps:
       - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6

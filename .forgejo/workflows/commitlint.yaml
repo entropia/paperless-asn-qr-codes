@@ -11,7 +11,7 @@ jobs:
   commitlint-check:
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-commitlint:latest@sha256:3ff05e1e219dcdb7c1ff73dac8260a80bc706540e593ae6416381ba43fb0b0d0
+      image: codeberg.org/margau/buildenv-commitlint:latest@sha256:243d5a0bed5be48a06167e2f4eaa132b7548f3e93605601575fb8e2612e5da82
 
     steps:
       - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
