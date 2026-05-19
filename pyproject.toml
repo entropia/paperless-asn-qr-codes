@@ -34,14 +34,18 @@ Source = "https://codeberg.org/entropia/paperless-asn-qr-codes.git"
 [project.scripts]
 paperless-asn-qr-code = "paperless_asn_qr_codes.main:main"
 
-
-# Dev Dependencies
-[tool.uv]
-dev-dependencies = [
-  "ruff",
-  "pylint",
-  "pytest",
+[dependency-groups]
+dev = [
+  "ruff>=0.15.13",
+  "pylint>=4.0.5",
+  "pytest>=9.0.3",
+  "coverage>=7.14.0",
 ]
+
+[tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+[tool.coverage.run]
+source = ["paperless_asn_qr_codes", "tests"]
 
 # TODO: Dev/CI scripts for lint & co.

@@ -8,6 +8,7 @@
       "matchFileNames": [
         ".forgejo/workflows/commitlint.yaml",
         ".forgejo/workflows/lint.yaml",
+        ".forgejo/workflows/test.yaml",
         ".forgejo/workflows/publish.yaml",
         ".forgejo/workflows/container.yaml",
         "Containerfile"
@@ -18,6 +19,7 @@
       "matchFileNames": [
         ".forgejo/workflows/commitlint.yaml",
         ".forgejo/workflows/lint.yaml",
+        ".forgejo/workflows/test.yaml",
         ".forgejo/workflows/publish.yaml",
         ".forgejo/workflows/container.yaml",
         "Containerfile"

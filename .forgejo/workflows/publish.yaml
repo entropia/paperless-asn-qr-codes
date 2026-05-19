@@ -13,13 +13,23 @@ jobs:
   build_publish:
     name: "Build (and Publish)"
     runs-on: docker
+    env:
+      UV_CACHE_DIR: /tmp/.uv-cache
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:aaaf8bd9bfbe276136de485eb397aad9dc569b0ae76473b12f16b0205fcf4be0
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:5fe5329c217c5107242a2b04523f25facbfe0a9ff00f895fbf8f6334e239a7b0
     
     steps:
       - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0
+      - name: cache restore
+        uses: https://code.forgejo.org/actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        with:
+          path: /tmp/.uv-cache
+          key: uv-${{ hashFiles('uv.lock') }}
+          restore-keys: |
+            uv-${{ hashFiles('uv.lock') }}
+            uv
       - name: Build the project
         run: uv build
       - name: Publish release to pypi
@@ -45,11 +55,19 @@ jobs:
           direction: upload
           release-dir: dist
           release-notes-file: notes.md
+      - name: Minimize uv cache
+        run: uv cache prune --ci
+      - name: cache save
+        uses: https://code.forgejo.org/actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        with:
+          path: /tmp/.uv-cache
+          key: uv-${{ hashFiles('uv.lock') }}
+
   releasenotes-draft:
     name: "Draft Release Notes"
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:aaaf8bd9bfbe276136de485eb397aad9dc569b0ae76473b12f16b0205fcf4be0
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:5fe5329c217c5107242a2b04523f25facbfe0a9ff00f895fbf8f6334e239a7b0
     
     steps:
       - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
