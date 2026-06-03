@@ -14,7 +14,7 @@ jobs:
       image: codeberg.org/margau/buildenv-uv:latest@sha256:5fe5329c217c5107242a2b04523f25facbfe0a9ff00f895fbf8f6334e239a7b0
 
     steps:
-      - uses: https://code.forgejo.org/actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: https://code.forgejo.org/actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           fetch-depth: 0
       - name: create venv
