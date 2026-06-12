@@ -46,21 +46,12 @@
       "separateMinorPatch": true
     },
     {
-      "matchManagers": [
-        "copier"
-      ],
       "matchUpdateTypes": [
-        "patch"
+        "patch",
+        "digest"
       ],
+      "matchPackageNames": ["codeberg.org/margau/buildenv*", "https://codeberg.org/margau/copier-python-uv.git"],
       "groupName": "housekeeping",
-      "branchTopic": "housekeeping",
-      "automerge": true,
-      "automergeSchedule": "* 0-3 */2 * *"
-    },
-    {
-      "matchPackageNames": ["codeberg.org/margau/buildenv*"],
-      "groupName": "housekeeping",
-      "branchTopic": "housekeeping",
       "automerge": true,
       "automergeSchedule": "* 0-3 */2 * *"
     }
