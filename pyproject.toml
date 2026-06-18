@@ -40,6 +40,8 @@ dev = [
   "pylint>=4.0.5",
   "pytest>=9.0.3",
   "coverage>=7.14.0",
+  "cli-test-helpers>=4.2.0",
+  "python-magic>=0.4.27",
 ]
 
 [tool.uv]
@@ -47,5 +49,27 @@ cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true 
 
 [tool.coverage.run]
 source = ["paperless_asn_qr_codes", "tests"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D104",
+    "D107",
+    "D200",
+    "D203",
+    "D205",
+    "D213",
+    "D400",
+    "D401",
+    "D415", # TODO: Remove later
+    "FIX002", # TODO: Remove later
+    "TD002", # TODO: Remove later
+    "TD003", # TODO: Remove later
+    "ANN", # TODO: Remove later
+    "COM812",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**.py" = ["S101", "INP001", "PLR2004"]
 
 # TODO: Dev/CI scripts for lint & co.

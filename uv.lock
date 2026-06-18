@@ -125,6 +125,15 @@ wheels = [
 ]
 
 [[package]]
+name = "cli-test-helpers"
+version = "4.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/21/7f/e75d5401607fe7ecbdb61f2834c938188d5701625006851214063ae9d59b/cli_test_helpers-4.2.0.tar.gz", hash = "sha256:c7dc8f26a1ca30ff63d75ef2f259ec7044e1c4a78dede204627e069861257b06", size = 50969, upload-time = "2025-12-15T09:54:21.464Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/02/4b/3d6ef5cfb906b2e53b8af97023ac17d103b9ba1a795587d3a2b6ad9a8e1e/cli_test_helpers-4.2.0-py3-none-any.whl", hash = "sha256:6b644e0abc3e9a22fae9765cde96a525ca317f7e296a5f25ff1dcfebfec1119a", size = 35706, upload-time = "2025-12-15T09:54:20.561Z" },
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -313,9 +322,11 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "cli-test-helpers" },
     { name = "coverage" },
     { name = "pylint" },
     { name = "pytest" },
+    { name = "python-magic" },
     { name = "ruff" },
 ]
 
@@ -327,9 +338,11 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "cli-test-helpers", specifier = ">=4.2.0" },
     { name = "coverage", specifier = ">=7.14.0" },
     { name = "pylint", specifier = ">=4.0.5" },
     { name = "pytest", specifier = ">=9.0.3" },
+    { name = "python-magic", specifier = ">=0.4.27" },
     { name = "ruff", specifier = ">=0.15.13" },
 ]
 
@@ -493,6 +506,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/7d/0d/549bd94f1a0a402dc8cf64563a117c0f3765662e2e668477624baeec44d5/pytest-9.0.3.tar.gz", hash = "sha256:b86ada508af81d19edeb213c681b1d48246c1a91d304c6c81a427674c17eb91c", size = 1572165, upload-time = "2026-04-07T17:16:18.027Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d4/24/a372aaf5c9b7208e7112038812994107bc65a84cd00e0354a88c2c77a617/pytest-9.0.3-py3-none-any.whl", hash = "sha256:2c5efc453d45394fdd706ade797c0a81091eccd1d6e4bccfcd476e2b8e0ab5d9", size = 375249, upload-time = "2026-04-07T17:16:16.13Z" },
+]
+
+[[package]]
+name = "python-magic"
+version = "0.4.27"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/da/db/0b3e28ac047452d079d375ec6798bf76a036a08182dbb39ed38116a49130/python-magic-0.4.27.tar.gz", hash = "sha256:c1ba14b08e4a5f5c31a302b7721239695b2f0f058d125bd5ce1ee36b9d9d3c3b", size = 14677, upload-time = "2022-06-07T20:16:59.508Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6c/73/9f872cb81fc5c3bb48f7227872c28975f998f3e7c2b1c16e95e6432bbb90/python_magic-0.4.27-py2.py3-none-any.whl", hash = "sha256:c212960ad306f700aa0d01e5d7a325d20548ff97eb9920dcd29513174f0294d3", size = 13840, upload-time = "2022-06-07T20:16:57.763Z" },
 ]
 
 [[package]]

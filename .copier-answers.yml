@@ -1,12 +1,12 @@
 # Changes here will be overwritten by Copier.
-_commit: 0.8.2
+_commit: 0.9.17
 _src_path: https://codeberg.org/margau/copier-python-uv.git
 code_dir: paperless_asn_qr_codes
 container: false
 forgejo_publish: true
 forgejo_url: https://codeberg.org/entropia/paperless-asn-qr-codes
 ignore_pylint: false
-ignore_pytest: true
+ignore_pytest: false
 ignore_ruff: false
 ignore_ruff_format: false
 project_description: Code for generating paperless ASN labels with QR codes
