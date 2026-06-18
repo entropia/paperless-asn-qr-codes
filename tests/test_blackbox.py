@@ -2,8 +2,8 @@
 """Blackbox-like testing of the paperless-asn-qrcode cli tool"""
 
 import shutil
-import magic
 
+import magic
 from cli_test_helpers import shell
 
 

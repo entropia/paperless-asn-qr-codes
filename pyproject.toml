@@ -67,6 +67,14 @@ ignore = [
     "TD003", # TODO: Remove later
     "ANN", # TODO: Remove later
     "COM812",
+    "PLW0603", # TODO: Repository-specific ignore, remove when refactoring
+    "PLW0602", # TODO: Repository-specific ignore, remove when refactoring
+    "S101", # TODO: Repository-specific ignore, remove when refactoring
+    "N802", # TODO: Repository-specific ignore, remove when refactoring
+    "N803", # TODO: Repository-specific ignore, remove when refactoring
+    "N816", # TODO: Repository-specific ignore, remove when refactoring
+    "FBT002", # TODO: Repository-specific ignore, remove when refactoring
+    "ERA001", # TODO: Repository-specific ignore, remove when refactoring
 ]
 
 [tool.ruff.lint.per-file-ignores]

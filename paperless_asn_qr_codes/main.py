@@ -32,7 +32,8 @@ def main():
             return (int(mat.group(1)), int(mat.group(2)))
         if mat := re.match(r"^\d+$", arg):
             return int(arg)
-        raise argparse.ArgumentTypeError("invalid value")
+        msg = "invalid value"
+        raise argparse.ArgumentTypeError(msg)
 
     # prepare a sorted list of all formats
     available_formats = list(avery_labels.labelInfo.keys())
@@ -63,7 +64,8 @@ def main():
         "--border",
         "-b",
         action="store_true",
-        help="Display borders around labels, useful for debugging the printer alignment",
+        help="""Display borders around labels,
+                useful for debugging the printer alignment""",
     )
     parser.add_argument(
         "--row-wise",
@@ -89,7 +91,8 @@ def main():
         "-s",
         type=_start_position,
         help="""Define the starting position on the sheet,
-                eighter as ROW:COLUMN or COUNT, both starting from 1 (default: 1:1 or 1)""",
+                eighter as ROW:COLUMN or COUNT,
+                both starting from 1 (default: 1:1 or 1)""",
     )
 
     args = parser.parse_args()
@@ -103,10 +106,6 @@ def main():
     label.open(args.output_file)
 
     # If defined use parameter for number of labels
-    if args.num_labels:
-        count = args.num_labels
-    else:
-        # Otherwise number of pages*labels - offset
-        count = args.pages * label.across * label.down - label.position
+    count = args.num_labels or (args.pages * label.across * label.down - label.position)
     label.render(render, count)
     label.close()
