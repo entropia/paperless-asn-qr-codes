@@ -13,14 +13,14 @@ jobs:
     env:
       UV_CACHE_DIR: /tmp/.uv-cache
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:a2559f0d865dbc7d13e82990f6147bd2124129b6e6f3b4d281579834f6ab0a64
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:c5732f2bd412b4404cf01a78b8238eeae0d9ae62460ecc66647ec04dd669d5bf
 
     steps:
       - uses: https://code.forgejo.org/actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           fetch-depth: 0
       - name: cache restore
-        uses: https://code.forgejo.org/actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        uses: https://code.forgejo.org/actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: /tmp/.uv-cache
           key: uv-${{ hashFiles('uv.lock') }}
@@ -36,7 +36,7 @@ jobs:
       - name: Minimize uv cache
         run: uv cache prune
       - name: cache save
-        uses: https://code.forgejo.org/actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        uses: https://code.forgejo.org/actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: /tmp/.uv-cache
           key: uv-${{ hashFiles('uv.lock') }}

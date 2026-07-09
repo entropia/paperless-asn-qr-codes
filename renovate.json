@@ -40,6 +40,18 @@
       "enabled": false
     },
     {
+      "matchPackageNames": [
+          "ruff",
+          "pylint",
+          "pytest",
+          "coverage"
+      ],
+      "matchFileNames": [
+        "pyproject.toml"
+      ],
+      "enabled": false
+    },
+    {
       "matchManagers": [
         "copier"
       ],
