@@ -55,7 +55,12 @@
       "matchManagers": [
         "copier"
       ],
-      "separateMinorPatch": true
+      "separateMinorPatch": true,
+      "ignoreScripts": false,
+      "postUpgradeTasks": {
+        "commands": ["uv lock"],
+        "executionMode": "branch"
+      }
     },
     {
       "matchUpdateTypes": [
