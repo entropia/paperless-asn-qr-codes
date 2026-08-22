@@ -16,10 +16,10 @@ jobs:
     env:
       UV_CACHE_DIR: /tmp/.uv-cache
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:c5732f2bd412b4404cf01a78b8238eeae0d9ae62460ecc66647ec04dd669d5bf
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:04394620313c572b804ec642d88280c61c0c461d5ea5f1cfa37a3a0ba7589247
     
     steps:
-      - uses: https://code.forgejo.org/actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: https://code.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
       - name: cache restore
@@ -67,10 +67,10 @@ jobs:
     name: "Draft Release Notes"
     runs-on: docker
     container:
-      image: codeberg.org/margau/buildenv-uv:latest@sha256:c5732f2bd412b4404cf01a78b8238eeae0d9ae62460ecc66647ec04dd669d5bf
+      image: codeberg.org/margau/buildenv-uv:latest@sha256:04394620313c572b804ec642d88280c61c0c461d5ea5f1cfa37a3a0ba7589247
     
     steps:
-      - uses: https://code.forgejo.org/actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: https://code.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
       - name: draft release notes
