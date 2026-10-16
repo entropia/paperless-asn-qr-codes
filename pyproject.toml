@@ -36,10 +36,11 @@ paperless-asn-qr-code = "paperless_asn_qr_codes.main:main"
 
 [dependency-groups]
 dev = [
-  "ruff==0.16.7",
-  "pylint==4.0.8",
+  "ruff==0.17.0",
+  "pylint==4.1.3",
   "pytest==9.1.1",
-  "coverage==7.16.0",
+  "coverage==7.16.2",
+  # end of copier-managed dependencies
   "cli-test-helpers==4.2.0",
   "python-magic==0.4.27",
 ]
